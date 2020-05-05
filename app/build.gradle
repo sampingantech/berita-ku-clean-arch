@@ -6,7 +6,7 @@ apply from: 'https://raw.githubusercontent.com/JakeWharton/SdkSearch/master/grad
 
 android {
     defaultConfig {
-        applicationId "com.anangkur.beritaku.app"
+        applicationId "com.anangkur.beritaku"
         versionCode 2
         versionName "1.0"
     }
