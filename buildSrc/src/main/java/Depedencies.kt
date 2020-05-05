@@ -44,18 +44,12 @@ object Versions {
 }
 
 object Deps {
-    const val kotlinxCoroutine = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.kotlinxVersion}"
-    const val kotlinxCoroutineAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.kotlinxVersion}"
-
-    const val androidxAppCompat = "androidx.appcompat:appcompat:${Versions.appCompatVersion}"
-    const val androidxCardView = "androidx.cardview:cardview:${Versions.cardVersion}"
-    const val androidxRecyclerView = "androidx.recyclerview:recyclerview:${Versions.recyclerViewVersion}"
     const val androidxConstraintLayout = "androidx.constraintlayout:constraintlayout:${Versions.constraintLayoutVersion}"
-    const val androidxAnnotation = "androidx.annotation:annotation:${Versions.androidXAnnotationsVersion}"
-    const val androidxLegacySupport = "androidx.legacy:legacy-support-v4:${Versions.androidXLegacySupportVersion}"
+
     const val androidxLifeCycleExtension = "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycleVersion}"
+
     const val androidxLivedata = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.liveDataVersion}"
-    const val androidxRoomRuntime = "androidx.room:room-runtime:${Versions.roomVersion}"
+
     const val androidxRoom = "androidx.room:room-ktx:${Versions.roomVersion}"
     const val androidxRoomCompiler = "androidx.room:room-compiler:${Versions.roomVersion}"
 

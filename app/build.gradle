@@ -26,30 +26,14 @@ android {
     }
 }
 
-androidExtensions {
-    experimental = true
-}
-
 dependencies {
-    implementation Deps.kotlinxCoroutine
-    implementation Deps.kotlinxCoroutineAndroid
-
-    implementation Deps.androidxAppCompat
-    implementation Deps.androidxCardView
-    implementation Deps.androidxRecyclerView
     implementation Deps.androidxConstraintLayout
-    implementation Deps.androidxAnnotation
-    implementation Deps.androidxLegacySupport
 
     implementation Deps.androidxLifeCycleExtension
     implementation Deps.androidxLivedata
 
-    implementation Deps.androidxRoomRuntime
     implementation Deps.androidxRoom
     kapt Deps.androidxRoomCompiler
-
-    // google material
-    implementation Deps.googleMaterial
 
     // Dependencies for Glide
     implementation Deps.glide
