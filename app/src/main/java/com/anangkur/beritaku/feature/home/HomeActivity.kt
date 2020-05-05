@@ -13,6 +13,7 @@ import com.anangkur.beritaku.data.model.news.Article
 import com.anangkur.beritaku.feature.detail.DetailActivity
 import com.anangkur.beritaku.util.*
 import kotlinx.android.synthetic.main.activity_home.*
+import kotlinx.android.synthetic.main.layout_toolbar.*
 
 class HomeActivity: BaseActivity<HomeViewModel>(), HomeActionListener {
 
@@ -27,9 +28,9 @@ class HomeActivity: BaseActivity<HomeViewModel>(), HomeActionListener {
     override val mViewModel: HomeViewModel
         get() = obtainViewModel(HomeViewModel::class.java)
     override val mToolbar: Toolbar?
-        get() = null
+        get() = toolbar
     override val mTitleToolbar: String?
-        get() = null
+        get() = getString(R.string.app_name)
 
     private lateinit var adapterBreaking: BreakingAdapter
     private lateinit var adapterBusiness: RegularAdapter

@@ -11,7 +11,7 @@ import com.anangkur.beritaku.feature.originalNews.OriginalNewsActivity
 import com.anangkur.beritaku.util.obtainViewModel
 import com.anangkur.beritaku.util.setImageUrl
 import kotlinx.android.synthetic.main.activity_detail.*
-import kotlinx.android.synthetic.main.layout_toolbar.*
+import kotlinx.android.synthetic.main.layout_toolbar_back.*
 
 class DetailActivity: BaseActivity<DetailViewModel>(), DetailActivityActionListener {
 

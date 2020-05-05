@@ -21,7 +21,7 @@ import com.anangkur.beritaku.util.gone
 import com.anangkur.beritaku.util.obtainViewModel
 import com.anangkur.beritaku.util.visible
 import kotlinx.android.synthetic.main.activity_original_news.*
-import kotlinx.android.synthetic.main.layout_toolbar.*
+import kotlinx.android.synthetic.main.layout_toolbar_back.*
 
 class OriginalNewsActivity: BaseActivity<ViewModel>() {
 
