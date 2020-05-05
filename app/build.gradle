@@ -6,7 +6,7 @@ apply from: 'https://raw.githubusercontent.com/JakeWharton/SdkSearch/master/grad
 
 android {
     defaultConfig {
-        applicationId "com.anangkur.beritaku"
+        applicationId "com.anangkur.beritaku.app"
         versionCode 2
         versionName "1.0"
     }
@@ -24,20 +24,26 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
 }
 
 dependencies {
+
+    implementation(project(':features:news'))
+
     implementation Deps.androidxConstraintLayout
-
-    implementation Deps.androidxLifeCycleExtension
-    implementation Deps.androidxLivedata
-
-    implementation Deps.androidxRoom
-    kapt Deps.androidxRoomCompiler
 
     // Dependencies for Glide
     implementation Deps.glide
     annotationProcessor Deps.glideCompiler
+
+    // chuck
+    debugImplementation Deps.chuck
+    releaseImplementation Deps.chuckNoOp
+
+    // Room
+    implementation Deps.androidxRoom
+    kapt Deps.androidxRoomCompiler
 
     // retrofit
     implementation Deps.retrofitConverterGson
@@ -45,13 +51,12 @@ dependencies {
     implementation Deps.okhttp
     implementation Deps.okhttpLoggingInterceptor
 
+    implementation Deps.androidxLifeCycleExtension
+    implementation Deps.androidxLivedata
+
     // others
     implementation Deps.materialLoadingButton
     implementation Deps.multilineCollapsingToolbar
-
-    // chuck
-    debugImplementation Deps.chuck
-    releaseImplementation Deps.chuckNoOp
 
     testImplementation Deps.testLibJunit
 

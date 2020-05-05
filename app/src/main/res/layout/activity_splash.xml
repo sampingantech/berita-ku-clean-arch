@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/ConstraintDefault"
     android:background="@color/colorPrimary"
-    tools:context=".feature.splash.SplashActivity">
+    tools:context=".app.feature.splash.SplashActivity">
 
     <ImageView
         android:id="@+id/iv_splash"
