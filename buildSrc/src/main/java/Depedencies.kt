@@ -12,19 +12,11 @@ object Versions {
     const val kotlinVersion = "1.3.61"
     const val gradleAndroid = "3.5.0"
 
-    const val kotlinxVersion = "1.3.1"
-
-    const val androidXAnnotationsVersion = "1.0.1"
-    const val androidXLegacySupportVersion = "1.0.0"
-
     const val junit = "4.12"
     const val androidxEspresso = "3.1.0"
     const val androidxTesting = "1.1.1"
 
     const val materialVersion = "1.0.0"
-    const val cardVersion = "1.0.0"
-    const val recyclerViewVersion = "1.1.0"
-    const val appCompatVersion = "1.1.0"
     const val constraintLayoutVersion = "1.1.3"
 
     const val roomVersion = "2.2.3"
