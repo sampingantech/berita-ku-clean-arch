@@ -7,7 +7,6 @@
     tools:context=".feature.splash.SplashActivity">
 
     <ImageView
-        android:id="@+id/iv_splash"
         style="@style/ImageViewWrapAll"
         android:src="@drawable/ic_logo"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -1,7 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply from: 'https://raw.githubusercontent.com/JakeWharton/SdkSearch/master/gradle/projectDependencyGraph.gradle'
 
 android {
     defaultConfig {
@@ -31,10 +30,4 @@ dependencies {
     implementation Deps.androidxAppCompat
 
     implementation Deps.androidxViewModel
-
-    testImplementation Deps.testLibJunit
-
-    androidTestImplementation Deps.testAndroidxRunner
-    androidTestImplementation Deps.testAndroidxRules
-    androidTestImplementation Deps.testAndroidxEspressoCore
 }

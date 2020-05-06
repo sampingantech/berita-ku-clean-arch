@@ -18,10 +18,6 @@
         <item name="android:orientation">vertical</item>>
     </style>
 
-    <style name="LinearVerticalWrapAll" parent="LinearVerticalDefault">
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_width">wrap_content</item>
-    </style>
     <style name="LinearVerticalWrap" parent="LinearVerticalDefault">
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">match_parent</item>
@@ -44,19 +40,6 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
-    <style name="RelativeConstraint" parent="RelativeDefault">
-        <item name="android:layout_height">0dp</item>
-        <item name="android:layout_width">0dp</item>
-    </style>
-    <style name="RelativeButton" parent="RelativeDefault">
-        <item name="android:layout_height">0dp</item>
-        <item name="android:background">@drawable/rect_solid_coloraccent_rounded_100dp</item>
-        <item name="android:foreground">@drawable/ripple_button_background_dark</item>
-    </style>
-    <style name="RelativeButtonTransparent" parent="RelativeDefault">
-        <item name="android:layout_height">0dp</item>
-        <item name="android:foreground">?selectableItemBackground</item>
-    </style>
     <!--end of style for relative-->
 
     <!--style for constraint-->
@@ -70,24 +53,12 @@
     <!--end of style for constraint-->
 
     <!--style for coordinator-->
-    <style name="CoordinatorDefault">
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_width">match_parent</item>
-    </style>
     <!--end of style for coordinator-->
 
     <!--style for appbar-->
-    <style name="AppBarCollapsing">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-    </style>
     <!--end of style for appbar-->
 
     <!--style for collapsing toolbar-->
-    <style name="CollapsingDefault">
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_width">match_parent</item>
-    </style>
     <!--end of style for collapsing toolbar-->
 
     <!--style for recycler view-->
@@ -106,11 +77,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">14sp</item>
     </style>
-    <style name="TextSmall">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">12sp</item>
-    </style>
+
     <style name="TextBig">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -125,11 +92,6 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">24sp</item>
-    </style>
-    <style name="TextSuperSuperExtraBig">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">48sp</item>
     </style>
     <!--end of style for base text-->
 
@@ -164,17 +126,9 @@
     <!--end of style for image view-->
 
     <!--style for text input layout-->
-    <style name="TextInputLayoutDefault">
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_width">match_parent</item>
-    </style>
     <!--end of style for text input layout-->
 
     <!--style for edit text-->
-    <style name="EditTextDefault">
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_width">match_parent</item>
-    </style>
     <!--end of style for edit text-->
 
     <!--style for view-->
@@ -182,16 +136,6 @@
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">1dp</item>
         <item name="android:background">@color/gray</item>
-    </style>
-    <style name="ViewCover">
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">0dp</item>
-        <item name="android:background">@drawable/rect_gradient_black60_black00</item>
-    </style>
-    <style name="ViewBackgroundGray">
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">0dp</item>
-        <item name="android:background">@drawable/rect_rounded_10dp_gray</item>
     </style>
     <!--end of style for view-->
 
@@ -227,65 +171,24 @@
     <!--end of style for toolbar-->
 
     <!--style for fab-->
-    <style name="FABDefault">
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_width">wrap_content</item>
-    </style>
     <!--end of style for fab-->
 
     <!--style for search-->
     <!--end of style for search-->
 
     <!--style for view pager-->
-    <style name="ViewPagerDefault">
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_width">match_parent</item>
-    </style>
-    <style name="ViewPagerRatio" parent="ViewPagerDefault">
-        <item name="android:layout_height">0dp</item>
-        <item name="android:layout_width">0dp</item>
-    </style>
     <!--end of style for view pager-->
 
     <!--style for tab layout-->
-    <style name="TabLayoutDefault">
-        <item name="android:layout_height">?actionBarSize</item>
-        <item name="android:layout_width">match_parent</item>
-    </style>
-    <style name="TabLayoutSlider" parent="TabLayoutDefault">
-        <item name="android:layout_width">120dp</item>
-        <item name="android:layout_height">24dp</item>
-        <item name="android:clickable">false</item>
-        <item name="android:layout_centerInParent">true</item>
-        <item name="tabMode">scrollable</item>
-        <item name="tabBackground">@drawable/tab_selector</item>
-        <item name="tabIndicatorHeight">0dp</item>
-        <item name="tabMaxWidth">0dp</item>
-        <item name="tabMinWidth">0dp</item>
-        <item name="tabPadding">0dp</item>
-    </style>
     <!--end of style for tab layout-->
 
     <!--style for swipe refresh-->
-    <style name="SwipeRefreshDefault">
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_width">match_parent</item>
-    </style>
     <!--end of style for swipe refresh-->
 
     <!--style for frame-->
-    <style name="FrameDefault">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">match_parent</item>
-    </style>
     <!--end of style for frame-->
 
     <!--style for bottom navigation-->
-    <style name="BottomNavigationDefault">
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:background">@color/colorPrimary</item>
-    </style>
     <!--end of style for bottom navigation-->
 
     <!--style for button-->
@@ -293,15 +196,8 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">match_parent</item>
     </style>
-    <style name="ButtonSmall" parent="ButtonDefault">
-        <item name="android:layout_width">120dp</item>
-    </style>
     <!--end of style for button-->
 
     <!--style for spinner-->
-    <style name="SpinnerDefault">
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_width">match_parent</item>
-    </style>
     <!--end of style for spinner-->
 </resources>
