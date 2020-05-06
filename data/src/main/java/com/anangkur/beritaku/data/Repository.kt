@@ -1,8 +1,6 @@
 package com.anangkur.beritaku.data
 
 import com.anangkur.beritaku.core.util.Const
-import com.anangkur.beritaku.data.local.LocalRepository
-import com.anangkur.beritaku.data.remote.RemoteRepository
 
 class Repository(private val remoteRepository: RemoteRepository, private val localRepository: LocalRepository) {
 
@@ -19,7 +17,7 @@ class Repository(private val remoteRepository: RemoteRepository, private val loc
         },
         saveCallResult = {
             localRepository.deleteByCategory(Const.CATEGORY_GENERAL)
-            localRepository.insertData(it.articles.map { article ->
+            localRepository.insertData(it.articleEntities.map { article ->
                 article.copy(category = Const.CATEGORY_GENERAL)
             })
         }
@@ -38,7 +36,7 @@ class Repository(private val remoteRepository: RemoteRepository, private val loc
         },
         saveCallResult = {
             localRepository.deleteByCategory(Const.CATEGORY_BUSSINESS)
-            localRepository.insertData(it.articles.map { article ->
+            localRepository.insertData(it.articleEntities.map { article ->
                 article.copy(category = Const.CATEGORY_BUSSINESS)
             })
         }
@@ -57,7 +55,7 @@ class Repository(private val remoteRepository: RemoteRepository, private val loc
         },
         saveCallResult = {
             localRepository.deleteByCategory(Const.CATEGORY_TECHNOLOGY)
-            localRepository.insertData(it.articles.map { article ->
+            localRepository.insertData(it.articleEntities.map { article ->
                 article.copy(category = Const.CATEGORY_TECHNOLOGY)
             })
         }
@@ -76,7 +74,7 @@ class Repository(private val remoteRepository: RemoteRepository, private val loc
         },
         saveCallResult = {
             localRepository.deleteByCategory(Const.CATEGOGY_SPORT)
-            localRepository.insertData(it.articles.map { article ->
+            localRepository.insertData(it.articleEntities.map { article ->
                 article.copy(category = Const.CATEGOGY_SPORT)
             })
         }
@@ -84,7 +82,7 @@ class Repository(private val remoteRepository: RemoteRepository, private val loc
 
     companion object{
         @Volatile private var INSTANCE: Repository? = null
-        fun getInstance(remoteRepository: RemoteRepository, localRepository: LocalRepository) = INSTANCE
+        fun getInstance(remoteRepository: com.anangkur.beritaku.remote.RemoteRepository, localRepository: com.anangkur.beritaku.local.LocalRepository) = INSTANCE
             ?: synchronized(
             Repository::class.java){
             INSTANCE

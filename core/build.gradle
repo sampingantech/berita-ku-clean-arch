@@ -18,4 +18,6 @@ dependencies {
     // Dependencies for Glide
     implementation Deps.glide
     annotationProcessor Deps.glideCompiler
+
+    implementation Deps.retrofitConverterGson
 }

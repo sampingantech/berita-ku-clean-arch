@@ -11,8 +11,8 @@ import beritaku.features.news.ViewModelFactory.Companion.obtainViewModel
 import beritaku.features.news.detail.DetailActivity
 import com.anangkur.beritaku.core.base.BaseActivity
 import com.anangkur.beritaku.core.util.*
-import com.anangkur.beritaku.data.model.BaseResult
-import com.anangkur.beritaku.data.model.news.Article
+import com.anangkur.beritaku.core.base.BaseResult
+import com.anangkur.beritaku.data.model.ArticleEntity
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.layout_toolbar.*
 
@@ -160,14 +160,14 @@ class HomeActivity: BaseActivity<HomeViewModel>(),
         }
     }
 
-    private fun setupFirstBreaking(data: Article){
+    private fun setupFirstBreaking(data: ArticleEntity){
         tv_title_breaking.text = data.title
         tv_content_breaking.text = data.content
         iv_breaking.setImageUrl(data.urlToImage?:"")
         btn_read_more_breaking.setOnClickListener { this.onClickItem(data) }
     }
 
-    override fun onClickItem(data: Article) {
+    override fun onClickItem(data: ArticleEntity) {
         DetailActivity.startActivity(this, data)
     }
 }

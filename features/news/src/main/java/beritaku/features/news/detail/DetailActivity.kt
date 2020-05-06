@@ -9,7 +9,7 @@ import beritaku.features.news.ViewModelFactory.Companion.obtainViewModel
 import beritaku.features.news.originalNews.OriginalNewsActivity
 import com.anangkur.beritaku.core.base.BaseActivity
 import com.anangkur.beritaku.core.util.setImageUrl
-import com.anangkur.beritaku.data.model.news.Article
+import com.anangkur.beritaku.data.model.ArticleEntity
 import kotlinx.android.synthetic.main.activity_detail.*
 import kotlinx.android.synthetic.main.layout_toolbar.*
 
@@ -17,7 +17,7 @@ class DetailActivity: BaseActivity<DetailViewModel>(), DetailActivityActionListe
 
     companion object{
         const val EXTRA_ARTICLE = "EXTRA_ARTICLE"
-        fun startActivity(context: Context, data: Article){
+        fun startActivity(context: Context, data: ArticleEntity){
             context.startActivity(Intent(context, DetailActivity::class.java)
                 .putExtra(EXTRA_ARTICLE, data))
         }
@@ -36,17 +36,17 @@ class DetailActivity: BaseActivity<DetailViewModel>(), DetailActivityActionListe
         super.onCreate(savedInstanceState)
 
         getIntentData()
-        setupDataToView(mViewModel.article)
-        btn_read_more.setOnClickListener { this.onClickSeeOriginal(mViewModel.article?.url?:"") }
+        setupDataToView(mViewModel.articleEntity)
+        btn_read_more.setOnClickListener { this.onClickSeeOriginal(mViewModel.articleEntity?.url?:"") }
     }
 
     private fun getIntentData(){
         if (intent.hasExtra(EXTRA_ARTICLE)){
-            mViewModel.article = intent.getParcelableExtra(EXTRA_ARTICLE)
+            mViewModel.articleEntity = intent.getParcelableExtra(EXTRA_ARTICLE)
         }
     }
 
-    private fun setupDataToView(data: Article?){
+    private fun setupDataToView(data: ArticleEntity?){
         tv_title_detail.text = data?.title
         tv_content_detail.text = data?.content
         iv_detail.setImageUrl(data?.urlToImage?:"")

@@ -1,0 +1,16 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation(project(':data'))
+
+    // Room
+    implementation Deps.androidxRoom
+    kapt Deps.androidxRoomCompiler
+
+    implementation Deps.androidxLivedata
+}

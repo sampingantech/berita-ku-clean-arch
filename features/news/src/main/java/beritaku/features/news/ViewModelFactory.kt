@@ -10,9 +10,8 @@ import androidx.lifecycle.ViewModelProviders
 import beritaku.features.news.detail.DetailViewModel
 import beritaku.features.news.home.HomeViewModel
 import com.anangkur.beritaku.core.util.Const
-import com.anangkur.beritaku.data.Injection
 import com.anangkur.beritaku.data.Repository
-import com.anangkur.beritaku.data.local.room.AppDatabase
+import com.anangkur.beritaku.local.db.AppDatabase
 
 class ViewModelFactory(private val repository: Repository): ViewModelProvider.NewInstanceFactory() {
 
