@@ -12,9 +12,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name="com.anangkur.beritaku.feature.originalNews.OriginalNewsActivity"/>
-        <activity android:name="com.anangkur.beritaku.feature.detail.DetailActivity" />
-        <activity android:name="com.anangkur.beritaku.feature.home.HomeActivity" />
         <activity android:name="com.anangkur.beritaku.feature.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -16,12 +16,14 @@ object Versions {
     const val androidxEspresso = "3.1.0"
     const val androidxTesting = "1.1.1"
 
+    const val appCompatVersion = "1.1.0"
     const val materialVersion = "1.0.0"
     const val constraintLayoutVersion = "1.1.3"
+    const val recyclerViewVersion = "1.1.0"
+    const val swipeRefreshVersion = "1.0.0"
 
     const val roomVersion = "2.2.3"
     const val lifecycleVersion= "2.2.0"
-    const val liveDataVersion = "2.2.0"
 
     const val glideVersion = "4.10.0"
 
@@ -37,10 +39,13 @@ object Versions {
 
 object Deps {
     const val androidxConstraintLayout = "androidx.constraintlayout:constraintlayout:${Versions.constraintLayoutVersion}"
+    const val androidxRecyclerView = "androidx.recyclerview:recyclerview:${Versions.recyclerViewVersion}"
+    const val androidxAppCompat = "androidx.appcompat:appcompat:${Versions.appCompatVersion}"
+    const val androidxSwipeRefresh = "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.swipeRefreshVersion}"
 
     const val androidxLifeCycleExtension = "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycleVersion}"
-
-    const val androidxLivedata = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.liveDataVersion}"
+    const val androidxViewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycleVersion}"
+    const val androidxLivedata = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycleVersion}"
 
     const val androidxRoom = "androidx.room:room-ktx:${Versions.roomVersion}"
     const val androidxRoomCompiler = "androidx.room:room-compiler:${Versions.roomVersion}"

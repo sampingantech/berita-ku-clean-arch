@@ -1,7 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-kapt'
 apply from: 'https://raw.githubusercontent.com/JakeWharton/SdkSearch/master/gradle/projectDependencyGraph.gradle'
 
 android {
@@ -14,12 +13,8 @@ android {
         debug {
             applicationIdSuffix ".debug"
             debuggable true
-            buildConfigField "String", "baseUrl", '"https://newsapi.org/v2/"'
-            buildConfigField "String", "baseImageUrl", '""'
         }
         release {
-            buildConfigField "String", "baseUrl", '"https://newsapi.org/v2/"'
-            buildConfigField "String", "baseImageUrl", '""'
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
@@ -28,35 +23,14 @@ android {
 }
 
 dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
 
+    implementation(project(':core'))
     implementation(project(':features:news'))
 
-    implementation Deps.androidxConstraintLayout
+    implementation Deps.androidxAppCompat
 
-    // Dependencies for Glide
-    implementation Deps.glide
-    annotationProcessor Deps.glideCompiler
-
-    // chuck
-    debugImplementation Deps.chuck
-    releaseImplementation Deps.chuckNoOp
-
-    // Room
-    implementation Deps.androidxRoom
-    kapt Deps.androidxRoomCompiler
-
-    // retrofit
-    implementation Deps.retrofitConverterGson
-    implementation Deps.retrofit
-    implementation Deps.okhttp
-    implementation Deps.okhttpLoggingInterceptor
-
-    implementation Deps.androidxLifeCycleExtension
-    implementation Deps.androidxLivedata
-
-    // others
-    implementation Deps.materialLoadingButton
-    implementation Deps.multilineCollapsingToolbar
+    implementation Deps.androidxViewModel
 
     testImplementation Deps.testLibJunit
 

@@ -1,7 +1,27 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
 
+    implementation(project(':core'))
+    implementation(project(':data'))
+
+    implementation Deps.androidxConstraintLayout
+
+    // others
+    implementation Deps.materialLoadingButton
+    implementation Deps.multilineCollapsingToolbar
+
+    // Dependencies for Glide
+    implementation Deps.glide
+    annotationProcessor Deps.glideCompiler
+
+    implementation Deps.androidxLifeCycleExtension
+
+    // Room
+    implementation Deps.androidxRoom
+    kapt Deps.androidxRoomCompiler
 }

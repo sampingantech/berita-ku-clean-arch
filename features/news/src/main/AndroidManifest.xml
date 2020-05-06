@@ -2,13 +2,10 @@
     xmlns:dist="http://schemas.android.com/apk/distribution"
     package="beritaku.feature.news">
 
-    <dist:module
-        dist:instant="false"
-        dist:title="@string/title_news">
-        <dist:delivery>
-            <dist:install-time />
-        </dist:delivery>
-        <dist:fusing dist:include="true" />
-    </dist:module>
+    <application>
+        <activity android:name="beritaku.features.news.home.HomeActivity"/>
+        <activity android:name="beritaku.features.news.detail.DetailActivity"/>
+        <activity android:name="beritaku.features.news.originalNews.OriginalNewsActivity"/>
+    </application>
 </manifest>
 

@@ -4,11 +4,12 @@ import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.ViewModel
+import beritaku.features.news.home.HomeActivity
 import com.anangkur.beritaku.R
-import com.anangkur.beritaku.base.BaseActivity
-import com.anangkur.beritaku.feature.home.HomeActivity
+import com.anangkur.beritaku.core.base.BaseActivity
 
-class SplashActivity: BaseActivity<ViewModel>() {
+class SplashActivity: BaseActivity<ViewModel>(){
+
     override val mLayout: Int
         get() = R.layout.activity_splash
     override val mViewModel: ViewModel?
@@ -31,4 +32,5 @@ class SplashActivity: BaseActivity<ViewModel>() {
             finish()
         }, 3000)
     }
+
 }

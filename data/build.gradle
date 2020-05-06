@@ -1,0 +1,27 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation(project(':core'))
+
+    // chuck
+    debugImplementation Deps.chuck
+    releaseImplementation Deps.chuckNoOp
+
+    // Room
+    implementation Deps.androidxRoom
+    kapt Deps.androidxRoomCompiler
+
+    // retrofit
+    implementation Deps.retrofitConverterGson
+    implementation Deps.retrofit
+    implementation Deps.okhttp
+    implementation Deps.okhttpLoggingInterceptor
+
+    implementation Deps.androidxLifeCycleExtension
+    implementation Deps.androidxLivedata
+}

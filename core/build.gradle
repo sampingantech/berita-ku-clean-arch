@@ -1,0 +1,21 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation Deps.androidxAppCompat
+    implementation Deps.androidxRecyclerView
+    implementation Deps.materialLoadingButton
+    implementation Deps.androidxSwipeRefresh
+    implementation Deps.googleMaterial
+
+    implementation Deps.androidxLifeCycleExtension
+    implementation Deps.androidxLivedata
+    implementation Deps.materialLoadingButton
+
+    // Dependencies for Glide
+    implementation Deps.glide
+    annotationProcessor Deps.glideCompiler
+}

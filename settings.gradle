@@ -1,3 +1,5 @@
 rootProject.name='Berita Ku'
 include ':app'
+include ':data'
+include ':core'
 include ':features:news'
