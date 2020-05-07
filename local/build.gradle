@@ -7,8 +7,11 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation(project(':data'))
+    implementation(project(':core'))
 
-    // Room
+    implementation Deps.dagger
+    kapt Deps.daggerCompiler
+
     implementation Deps.androidxRoom
     kapt Deps.androidxRoomCompiler
 

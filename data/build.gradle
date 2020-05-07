@@ -7,21 +7,10 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation(project(':core'))
+    implementation(project(':domain'))
 
-    // chuck
-    debugImplementation Deps.chuck
-    releaseImplementation Deps.chuckNoOp
+    implementation Deps.dagger
+    kapt Deps.daggerCompiler
 
-    // Room
-    implementation Deps.androidxRoom
-    kapt Deps.androidxRoomCompiler
-
-    // retrofit
-    implementation Deps.retrofitConverterGson
-    implementation Deps.retrofit
-    implementation Deps.okhttp
-    implementation Deps.okhttpLoggingInterceptor
-
-    implementation Deps.androidxLifeCycleExtension
     implementation Deps.androidxLivedata
 }

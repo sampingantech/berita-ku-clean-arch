@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -17,7 +18,7 @@ dependencies {
 
     // Dependencies for Glide
     implementation Deps.glide
-    annotationProcessor Deps.glideCompiler
+    kapt Deps.glideCompiler
 
     implementation Deps.retrofitConverterGson
 }

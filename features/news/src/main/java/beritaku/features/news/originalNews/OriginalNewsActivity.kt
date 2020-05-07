@@ -109,4 +109,8 @@ class OriginalNewsActivity: BaseActivity<ViewModel?>() {
             }
         }
     }
+
+    override fun onCreateInjector() {
+
+    }
 }

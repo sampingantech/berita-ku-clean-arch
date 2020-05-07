@@ -1,13 +1,17 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation(project(':data'))
+    implementation(project(':core'))
 
-    // retrofit
+    implementation Deps.dagger
+    kapt Deps.daggerCompiler
+
     implementation Deps.retrofitConverterGson
     implementation Deps.retrofit
     implementation Deps.okhttp

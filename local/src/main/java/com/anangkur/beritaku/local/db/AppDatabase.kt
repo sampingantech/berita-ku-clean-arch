@@ -7,9 +7,11 @@ import androidx.room.RoomDatabase
 import com.anangkur.beritaku.data.model.ArticleEntity
 import com.anangkur.beritaku.local.dao.AppDao
 import com.anangkur.beritaku.local.db.constant.Const
+import com.anangkur.beritaku.local.model.ArticleCached
+import javax.inject.Inject
 
-@Database(entities = [ArticleEntity::class], version = 1)
-abstract class AppDatabase: RoomDatabase(){
+@Database(entities = [ArticleCached::class], version = 1)
+abstract class AppDatabase @Inject constructor() : RoomDatabase(){
 
     abstract fun getDao(): AppDao
 

@@ -1,7 +1,7 @@
 package beritaku.features.news.home
 
-import com.anangkur.beritaku.data.model.ArticleEntity
+import beritaku.features.news.model.ArticleIntent
 
 interface HomeActionListener {
-    fun onClickItem(data: ArticleEntity)
+    fun onClickItem(data: ArticleIntent)
 }

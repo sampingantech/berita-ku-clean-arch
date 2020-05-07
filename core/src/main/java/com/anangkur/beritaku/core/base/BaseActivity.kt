@@ -18,6 +18,7 @@ abstract class BaseActivity<T: ViewModel?>: AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(mLayout)
 
+        onCreateInjector()
         setupToolbar()
     }
 
@@ -26,4 +27,6 @@ abstract class BaseActivity<T: ViewModel?>: AppCompatActivity(){
         supportActionBar?.title = mTitleToolbar
         mToolbar?.setNavigationOnClickListener { onBackPressed() }
     }
+
+    abstract fun onCreateInjector()
 }

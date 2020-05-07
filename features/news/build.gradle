@@ -7,23 +7,25 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation(project(':core'))
+    implementation(project(':presentation'))
     implementation(project(':data'))
     implementation(project(':local'))
     implementation(project(':remote'))
+    implementation(project(':domain'))
 
-    implementation Deps.androidxConstraintLayout
+    implementation Deps.dagger
+    kapt Deps.daggerCompiler
 
-    // others
-    implementation Deps.materialLoadingButton
-    implementation Deps.multilineCollapsingToolbar
-
-    // Dependencies for Glide
-    implementation Deps.glide
-    annotationProcessor Deps.glideCompiler
+    implementation Deps.androidxRoom
+    kapt Deps.androidxRoomCompiler
 
     implementation Deps.androidxLifeCycleExtension
 
-    // Room
-    implementation Deps.androidxRoom
-    kapt Deps.androidxRoomCompiler
+    implementation Deps.androidxConstraintLayout
+
+    implementation Deps.materialLoadingButton
+    implementation Deps.multilineCollapsingToolbar
+
+    implementation Deps.glide
+    kapt Deps.glideCompiler
 }

@@ -1,12 +1,15 @@
 package com.anangkur.beritaku.remote
 
-import com.anangkur.beritaku.data.BaseDataSource
-import com.anangkur.beritaku.data.DataSource
 import com.anangkur.beritaku.core.base.BaseResult
 import com.anangkur.beritaku.data.model.ArticleEntity
+import com.anangkur.beritaku.data.repository.ArticleRemote
 import com.anangkur.beritaku.remote.mapper.ArticleMapper
+import javax.inject.Inject
 
-class RemoteRepository(private val mapper: ArticleMapper): DataSource, BaseDataSource() {
+class RemoteRepository @Inject constructor(
+    private val mapper: ArticleMapper,
+    private val service: ApiService
+): ArticleRemote, BaseDataSource() {
 
     override suspend fun getTopHeadlinesNews(
         apiKey: String?,
@@ -14,8 +17,8 @@ class RemoteRepository(private val mapper: ArticleMapper): DataSource, BaseDataS
         category: String?,
         sources: String?,
         q: String?
-    ): com.anangkur.beritaku.core.base.BaseResult<List<ArticleEntity>> {
-        val response = ApiService.getApiService.getTopHeadlinesNews(
+    ): BaseResult<List<ArticleEntity>> {
+        val response = service.getTopHeadlinesNews(
             apiKey,
             country,
             category,
@@ -24,15 +27,9 @@ class RemoteRepository(private val mapper: ArticleMapper): DataSource, BaseDataS
         )
         return if (response.status == "ok"){
             val data = response.articleEntities.map { mapper.mapFromRemote(it) }
-            com.anangkur.beritaku.core.base.BaseResult.success(data)
+            BaseResult.success(data)
         }else{
-            com.anangkur.beritaku.core.base.BaseResult.error(response.message?:"")
+            BaseResult.error(response.message?:"")
         }
-    }
-
-    companion object{
-        private var INSTANCE: RemoteRepository? = null
-        fun getInstance() = INSTANCE
-            ?: RemoteRepository(ArticleMapper())
     }
 }

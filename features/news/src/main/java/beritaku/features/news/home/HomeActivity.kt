@@ -6,18 +6,22 @@ import android.os.Bundle
 import android.widget.LinearLayout
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import beritaku.feature.news.R
-import beritaku.features.news.ViewModelFactory.Companion.obtainViewModel
 import beritaku.features.news.detail.DetailActivity
+import beritaku.features.news.injection.ApplicationComponent
+import beritaku.features.news.mapper.ArticleMapper
+import beritaku.features.news.model.ArticleIntent
 import com.anangkur.beritaku.core.base.BaseActivity
 import com.anangkur.beritaku.core.util.*
 import com.anangkur.beritaku.core.base.BaseResult
-import com.anangkur.beritaku.data.model.ArticleEntity
+import com.anangkur.beritaku.presentation.features.news.HomeViewModel
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.layout_toolbar.*
+import javax.inject.Inject
 
-class HomeActivity: BaseActivity<HomeViewModel>(),
-    HomeActionListener {
+class HomeActivity: BaseActivity<HomeViewModel>(), HomeActionListener {
 
     companion object{
         fun startActivity(context: Context){
@@ -25,10 +29,13 @@ class HomeActivity: BaseActivity<HomeViewModel>(),
         }
     }
 
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+
     override val mLayout: Int
         get() = R.layout.activity_home
     override val mViewModel: HomeViewModel
-        get() = obtainViewModel(HomeViewModel::class.java)
+        get() = ViewModelProviders.of(this, viewModelFactory).get(HomeViewModel::class.java)
     override val mToolbar: Toolbar?
         get() = toolbar
     override val mTitleToolbar: String?
@@ -38,6 +45,9 @@ class HomeActivity: BaseActivity<HomeViewModel>(),
     private lateinit var adapterBusiness: RegularAdapter
     private lateinit var adapterTech: RegularAdapter
     private lateinit var adapterSport: RegularAdapter
+
+    @Inject
+    private lateinit var mapper: ArticleMapper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,7 +74,7 @@ class HomeActivity: BaseActivity<HomeViewModel>(),
                         showSnackbarShort(it.message?:"")
                     }
                     BaseResult.Status.SUCCESS -> {
-                        separateMoviesBreaking(it.data)
+                        separateMoviesBreaking(it.data?.map { item -> mViewModel.mapper.mapToView(item) })
                     }
                 }
             })
@@ -81,7 +91,8 @@ class HomeActivity: BaseActivity<HomeViewModel>(),
                         showSnackbarShort(it.message?:"")
                     }
                     BaseResult.Status.SUCCESS -> {
-                        if (it.data != null) adapterBusiness.setRecyclerData(it.data!!)
+                        val data = it.data!!.map { mapper.mapToView(it) }
+                        if (it.data != null) adapterBusiness.setRecyclerData(data.map { this@HomeActivity.mapper.mapToIntent(it) })
                     }
                 }
             })
@@ -98,7 +109,8 @@ class HomeActivity: BaseActivity<HomeViewModel>(),
                         showSnackbarShort(it.message?:"")
                     }
                     BaseResult.Status.SUCCESS -> {
-                        if (it.data != null) adapterTech.setRecyclerData(it.data!!)
+                        val data = it.data!!.map { mapper.mapToView(it) }
+                        if (it.data != null) adapterTech.setRecyclerData(data.map { this@HomeActivity.mapper.mapToIntent(it) })
                     }
                 }
             })
@@ -115,15 +127,16 @@ class HomeActivity: BaseActivity<HomeViewModel>(),
                         showSnackbarShort(it.message?:"")
                     }
                     BaseResult.Status.SUCCESS -> {
-                        if (it.data != null) adapterSport.setRecyclerData(it.data!!)
+                        val data = it.data!!.map { mapper.mapToView(it) }
+                        if (it.data != null) adapterSport.setRecyclerData(data.map { this@HomeActivity.mapper.mapToIntent(it) })
                     }
                 }
             })
             firstTopHeadlineLive.observe(this@HomeActivity, Observer {
-                setupFirstBreaking(it)
+                setupFirstBreaking(this@HomeActivity.mapper.mapToIntent(it))
             })
-            topHeadlineLive.observe(this@HomeActivity, Observer {
-                adapterBreaking.setRecyclerData(it)
+            topHeadlineLive.observe(this@HomeActivity, Observer {list ->
+                adapterBreaking.setRecyclerData(list.map { this@HomeActivity.mapper.mapToIntent(it) })
             })
         }
     }
@@ -160,14 +173,21 @@ class HomeActivity: BaseActivity<HomeViewModel>(),
         }
     }
 
-    private fun setupFirstBreaking(data: ArticleEntity){
+    private fun setupFirstBreaking(data: ArticleIntent){
         tv_title_breaking.text = data.title
         tv_content_breaking.text = data.content
         iv_breaking.setImageUrl(data.urlToImage?:"")
         btn_read_more_breaking.setOnClickListener { this.onClickItem(data) }
     }
 
-    override fun onClickItem(data: ArticleEntity) {
+    override fun onClickItem(data: ArticleIntent) {
         DetailActivity.startActivity(this, data)
+    }
+
+    override fun onCreateInjector() {
+        DaggerApplicationComponent
+            .builder()
+            .build()
+            .inject(this)
     }
 }

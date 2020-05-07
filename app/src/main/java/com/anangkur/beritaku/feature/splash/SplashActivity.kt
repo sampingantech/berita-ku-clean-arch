@@ -33,4 +33,8 @@ class SplashActivity: BaseActivity<ViewModel>(){
         }, 3000)
     }
 
+    override fun onCreateInjector() {
+
+    }
+
 }

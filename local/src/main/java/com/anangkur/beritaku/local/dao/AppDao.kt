@@ -10,9 +10,9 @@ interface AppDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertData(data: ArticleCached)
 
-    @Query("DELETE FROM ArticleEntity WHERE category = :category")
+    @Query("DELETE FROM ArticleCached WHERE category = :category")
     suspend fun deleteByCategory(category: String)
 
-    @Query("SELECT * FROM ArticleEntity WHERE category = :category")
+    @Query("SELECT * FROM ArticleCached WHERE category = :category")
     fun getAllDataByCategory(category: String): LiveData<List<ArticleCached>>
 }
