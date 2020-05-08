@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProviders
 import beritaku.feature.news.R
 import beritaku.features.news.detail.DetailActivity
 import beritaku.features.news.injection.ApplicationComponent
+import beritaku.features.news.injection.DaggerApplicationComponent
 import beritaku.features.news.mapper.ArticleMapper
 import beritaku.features.news.model.ArticleIntent
 import com.anangkur.beritaku.core.base.BaseActivity
@@ -47,7 +48,7 @@ class HomeActivity: BaseActivity<HomeViewModel>(), HomeActionListener {
     private lateinit var adapterSport: RegularAdapter
 
     @Inject
-    private lateinit var mapper: ArticleMapper
+    lateinit var mapper: ArticleMapper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -74,7 +75,7 @@ class HomeActivity: BaseActivity<HomeViewModel>(), HomeActionListener {
                         showSnackbarShort(it.message?:"")
                     }
                     BaseResult.Status.SUCCESS -> {
-                        separateMoviesBreaking(it.data?.map { item -> mViewModel.mapper.mapToView(item) })
+                         separateMoviesBreaking(it.data?.map { item -> mViewModel.mapper.mapToView(item) })
                     }
                 }
             })
@@ -91,8 +92,8 @@ class HomeActivity: BaseActivity<HomeViewModel>(), HomeActionListener {
                         showSnackbarShort(it.message?:"")
                     }
                     BaseResult.Status.SUCCESS -> {
-                        val data = it.data!!.map { mapper.mapToView(it) }
-                        if (it.data != null) adapterBusiness.setRecyclerData(data.map { this@HomeActivity.mapper.mapToIntent(it) })
+                         val data = it.data!!.map { mapper.mapToView(it) }
+                         if (it.data != null) adapterBusiness.setRecyclerData(data.map { this@HomeActivity.mapper.mapToIntent(it) })
                     }
                 }
             })
@@ -109,8 +110,8 @@ class HomeActivity: BaseActivity<HomeViewModel>(), HomeActionListener {
                         showSnackbarShort(it.message?:"")
                     }
                     BaseResult.Status.SUCCESS -> {
-                        val data = it.data!!.map { mapper.mapToView(it) }
-                        if (it.data != null) adapterTech.setRecyclerData(data.map { this@HomeActivity.mapper.mapToIntent(it) })
+                         val data = it.data!!.map { mapper.mapToView(it) }
+                         if (it.data != null) adapterTech.setRecyclerData(data.map { this@HomeActivity.mapper.mapToIntent(it) })
                     }
                 }
             })
@@ -127,8 +128,8 @@ class HomeActivity: BaseActivity<HomeViewModel>(), HomeActionListener {
                         showSnackbarShort(it.message?:"")
                     }
                     BaseResult.Status.SUCCESS -> {
-                        val data = it.data!!.map { mapper.mapToView(it) }
-                        if (it.data != null) adapterSport.setRecyclerData(data.map { this@HomeActivity.mapper.mapToIntent(it) })
+                         val data = it.data!!.map { mapper.mapToView(it) }
+                         if (it.data != null) adapterSport.setRecyclerData(data.map { this@HomeActivity.mapper.mapToIntent(it) })
                     }
                 }
             })

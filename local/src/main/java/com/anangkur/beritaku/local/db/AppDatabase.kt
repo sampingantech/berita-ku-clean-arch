@@ -11,31 +11,24 @@ import com.anangkur.beritaku.local.model.ArticleCached
 import javax.inject.Inject
 
 @Database(entities = [ArticleCached::class], version = 1)
-abstract class AppDatabase @Inject constructor() : RoomDatabase(){
+abstract class AppDatabase : RoomDatabase(){
 
     abstract fun getDao(): AppDao
 
-    companion object{
+    private var INSTANCE: AppDatabase? = null
 
-        @Volatile
-        private var INSTANCE: AppDatabase? = null
-
-        fun getDatabase(context: Context): AppDatabase {
-            val tempInstance =
-                INSTANCE
-            if (tempInstance != null){
-                return tempInstance
-            }
+    fun getDatabase(context: Context): AppDatabase {
+        if (INSTANCE == null){
             synchronized(this){
-                val instance =
-                    Room.databaseBuilder(
-                        context.applicationContext,
+                if (INSTANCE == null){
+                    INSTANCE = Room.databaseBuilder(context.applicationContext,
                         AppDatabase::class.java,
-                        Const.DATABASE_NAME
-                    ).build()
-                INSTANCE = instance
-                return instance
+                        Const.DATABASE_NAME)
+                        .build()
+                }
+                return INSTANCE!!
             }
         }
+        return INSTANCE!!
     }
 }

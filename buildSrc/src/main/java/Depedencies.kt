@@ -50,6 +50,8 @@ object Deps {
     // dagger
     const val daggerCompiler = "com.google.dagger:dagger-compiler:${Versions.daggerVersion}"
     const val dagger = "com.google.dagger:dagger:${Versions.daggerVersion}"
+    const val daggerSupport = "com.google.dagger:dagger-android-support:${Versions.daggerVersion}"
+    const val daggerProcessor = "com.google.dagger:dagger-android-processor:${Versions.daggerVersion}"
 
     // lifecycle
     const val androidxLifeCycleExtension = "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycleVersion}"

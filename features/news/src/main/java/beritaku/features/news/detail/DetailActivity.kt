@@ -7,6 +7,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import beritaku.feature.news.R
+import beritaku.features.news.injection.DaggerApplicationComponent
 import beritaku.features.news.mapper.ArticleMapper
 import beritaku.features.news.model.ArticleIntent
 import beritaku.features.news.originalNews.OriginalNewsActivity
@@ -40,7 +41,7 @@ class DetailActivity: BaseActivity<DetailViewModel>(), DetailActivityActionListe
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
     @Inject
-    private lateinit var mapper: ArticleMapper
+    lateinit var mapper: ArticleMapper
 
     private lateinit var articleIntent: ArticleIntent
 

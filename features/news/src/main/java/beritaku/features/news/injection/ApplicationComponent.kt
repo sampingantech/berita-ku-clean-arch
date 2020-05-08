@@ -1,10 +1,8 @@
 package beritaku.features.news.injection
 
-import android.app.Application
 import beritaku.features.news.detail.DetailActivity
 import beritaku.features.news.home.HomeActivity
 import beritaku.features.news.injection.module.*
-import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
 

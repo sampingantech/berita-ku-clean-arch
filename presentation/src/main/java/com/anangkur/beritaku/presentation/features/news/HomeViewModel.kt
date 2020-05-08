@@ -7,9 +7,9 @@ import com.anangkur.beritaku.presentation.mapper.ArticleMapper
 import com.anangkur.beritaku.presentation.model.ArticleView
 import javax.inject.Inject
 
-class HomeViewModel @Inject constructor(
-    private val getArticles: GetArticles,
-    val mapper: ArticleMapper
+class HomeViewModel @Inject internal constructor(
+     private val getArticles: GetArticles,
+     val mapper: ArticleMapper
 ): ViewModel(){
 
     val topHeadlineNewsLive by lazy { getArticles.getTopHeadlinesNews() }
