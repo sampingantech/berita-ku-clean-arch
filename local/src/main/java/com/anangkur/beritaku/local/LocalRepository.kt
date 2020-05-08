@@ -36,12 +36,4 @@ class LocalRepository @Inject constructor(
     private fun getLastCacheUpdateTimeMillis(): Long {
         return preferences.getLong(Const.PREF_CACHED_TIME, 0)
     }
-
-    companion object{
-        private var INSTANCE: LocalRepository? = null
-        fun getInstance(
-            preferences: SharedPreferences,
-            dao: AppDao
-        ) = INSTANCE ?: LocalRepository(preferences, ArticleMapper(), dao)
-    }
 }

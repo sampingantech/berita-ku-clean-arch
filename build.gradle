@@ -21,6 +21,17 @@ allprojects {
         jcenter()
         maven { url 'https://jitpack.io' }
     }
+    gradle.projectsEvaluated {
+        tasks.withType(JavaCompile) {
+            options.compilerArgs << "-Xmaxerrs" << "1000000"
+        }
+    }
+    afterEvaluate {
+        extensions.findByName('kapt')?.arguments {
+            arg("dagger.formatGeneratedSource", "disabled")
+            arg("dagger.gradle.incremental", "enabled")
+        }
+    }
 }
 
 subprojects {
