@@ -1,4 +1,4 @@
-package com.anangkur.beritaku.core.util
+package beritaku.features.news
 
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager

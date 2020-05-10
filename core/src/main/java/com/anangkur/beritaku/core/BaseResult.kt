@@ -1,4 +1,4 @@
-package com.anangkur.beritaku.core.base
+package com.anangkur.beritaku.core
 
 data class BaseResult<out T>(val status: Status, val data: T?, val message: String?, val isLoading: Boolean?) {
 

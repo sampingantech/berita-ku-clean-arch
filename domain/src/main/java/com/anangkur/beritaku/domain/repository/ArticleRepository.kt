@@ -1,7 +1,7 @@
 package com.anangkur.beritaku.domain.repository
 
 import androidx.lifecycle.LiveData
-import com.anangkur.beritaku.core.base.BaseResult
+import com.anangkur.beritaku.core.BaseResult
 import com.anangkur.beritaku.domain.model.Article
 
 interface ArticleRepository {

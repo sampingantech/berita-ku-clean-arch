@@ -15,10 +15,10 @@ import android.webkit.WebViewClient
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.ViewModel
 import beritaku.feature.news.R
-import com.anangkur.beritaku.core.base.BaseActivity
-import com.anangkur.beritaku.core.base.BaseErrorView
-import com.anangkur.beritaku.core.util.gone
-import com.anangkur.beritaku.core.util.visible
+import beritaku.features.news.base.BaseActivity
+import beritaku.features.news.base.BaseErrorView
+import beritaku.features.news.gone
+import beritaku.features.news.visible
 import kotlinx.android.synthetic.main.activity_original_news.*
 import kotlinx.android.synthetic.main.layout_toolbar_back.*
 

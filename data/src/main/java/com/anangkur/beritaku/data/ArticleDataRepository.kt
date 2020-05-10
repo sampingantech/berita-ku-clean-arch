@@ -2,7 +2,7 @@ package com.anangkur.beritaku.data
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.map
-import com.anangkur.beritaku.core.base.BaseResult
+import com.anangkur.beritaku.core.BaseResult
 import com.anangkur.beritaku.data.mapper.ArticleMapper
 import com.anangkur.beritaku.data.repository.ArticleLocal
 import com.anangkur.beritaku.data.repository.ArticleRemote
@@ -46,7 +46,12 @@ class ArticleDataRepository (
         q: String?
     ): BaseResult<List<Article>> {
         val result = factory.retrieveRemoteDataStore().getTopHeadlinesNews(apiKey, country, category, sources, q)
-        return BaseResult(result.status, result.data?.map { mapper.mapFromEntity(it) }, result.message, result.isLoading)
+        return BaseResult(
+            result.status,
+            result.data?.map { mapper.mapFromEntity(it) },
+            result.message,
+            result.isLoading
+        )
     }
 
 }

@@ -1,4 +1,4 @@
-package com.anangkur.beritaku.core.base
+package com.anangkur.beritaku.remote.model
 
 import com.google.gson.annotations.SerializedName
 

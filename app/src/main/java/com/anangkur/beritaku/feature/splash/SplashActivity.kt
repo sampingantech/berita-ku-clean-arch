@@ -6,7 +6,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.ViewModel
 import beritaku.features.news.home.HomeActivity
 import com.anangkur.beritaku.R
-import com.anangkur.beritaku.core.base.BaseActivity
+import beritaku.features.news.base.BaseActivity
 
 class SplashActivity: BaseActivity<ViewModel>(){
 

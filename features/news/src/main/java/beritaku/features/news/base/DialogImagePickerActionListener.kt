@@ -1,4 +1,4 @@
-package com.anangkur.beritaku.core.base
+package beritaku.features.news.base
 
 interface DialogImagePickerActionListener {
     fun onClickCamera()

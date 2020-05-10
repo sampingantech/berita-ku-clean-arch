@@ -1,4 +1,4 @@
-package com.anangkur.beritaku.core.base
+package beritaku.features.news.base
 
 import android.os.Bundle
 import android.view.LayoutInflater

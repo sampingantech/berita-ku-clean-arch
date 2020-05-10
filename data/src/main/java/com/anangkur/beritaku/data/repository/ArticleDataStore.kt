@@ -1,7 +1,7 @@
 package com.anangkur.beritaku.data.repository
 
 import androidx.lifecycle.LiveData
-import com.anangkur.beritaku.core.base.BaseResult
+import com.anangkur.beritaku.core.BaseResult
 import com.anangkur.beritaku.data.model.ArticleEntity
 
 interface ArticleDataStore {

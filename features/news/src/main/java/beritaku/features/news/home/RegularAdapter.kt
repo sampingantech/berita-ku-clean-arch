@@ -3,8 +3,8 @@ package beritaku.features.news.home
 import android.view.View
 import beritaku.feature.news.R
 import beritaku.features.news.model.ArticleIntent
-import com.anangkur.beritaku.core.base.BaseAdapter
-import com.anangkur.beritaku.core.util.setImageUrl
+import beritaku.features.news.base.BaseAdapter
+import beritaku.features.news.setImageUrl
 import kotlinx.android.synthetic.main.item_regular.view.*
 
 class RegularAdapter(private val listener: HomeActionListener): BaseAdapter<ArticleIntent>() {

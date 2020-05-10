@@ -7,13 +7,12 @@ import android.widget.LinearLayout
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
 import beritaku.feature.news.R
+import beritaku.features.news.*
 import beritaku.features.news.detail.DetailActivity
 import beritaku.features.news.mapper.ArticleMapper
 import beritaku.features.news.model.ArticleIntent
-import beritaku.features.news.obtainViewModel
-import com.anangkur.beritaku.core.base.BaseActivity
-import com.anangkur.beritaku.core.base.BaseResult
-import com.anangkur.beritaku.core.util.*
+import beritaku.features.news.base.BaseActivity
+import com.anangkur.beritaku.core.BaseResult
 import com.anangkur.beritaku.presentation.features.news.HomeViewModel
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.layout_toolbar.*

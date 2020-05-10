@@ -1,7 +1,7 @@
 package com.anangkur.beritaku.data.source
 
 import androidx.lifecycle.LiveData
-import com.anangkur.beritaku.core.base.BaseResult
+import com.anangkur.beritaku.core.BaseResult
 import com.anangkur.beritaku.data.model.ArticleEntity
 import com.anangkur.beritaku.data.repository.ArticleDataStore
 import com.anangkur.beritaku.data.repository.ArticleRemote

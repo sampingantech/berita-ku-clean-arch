@@ -1,4 +1,4 @@
-package com.anangkur.beritaku.core.base
+package beritaku.features.news.base
 
 import android.content.Context
 import android.util.AttributeSet
@@ -8,9 +8,9 @@ import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.RelativeLayout
 import android.widget.TextView
-import com.anangkur.beritaku.core.R
-import com.anangkur.beritaku.core.util.gone
-import com.anangkur.beritaku.core.util.visible
+import beritaku.feature.news.R
+import beritaku.features.news.gone
+import beritaku.features.news.visible
 import com.anangkur.materialloadingbutton.MaterialLoadingButton
 
 class BaseErrorView(context: Context, attrs: AttributeSet): RelativeLayout(context, attrs){

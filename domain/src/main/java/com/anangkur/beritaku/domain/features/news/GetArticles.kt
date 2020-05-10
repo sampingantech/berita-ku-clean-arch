@@ -1,6 +1,6 @@
 package com.anangkur.beritaku.domain.features.news
 
-import com.anangkur.beritaku.core.util.Const
+import com.anangkur.beritaku.domain.Const
 import com.anangkur.beritaku.domain.repository.ArticleRepository
 import com.anangkur.beritaku.domain.resultLiveData
 

@@ -1,6 +1,6 @@
 package com.anangkur.beritaku.remote
 
-import com.anangkur.beritaku.core.base.BaseResult
+import com.anangkur.beritaku.core.BaseResult
 import com.anangkur.beritaku.data.model.ArticleEntity
 import com.anangkur.beritaku.data.repository.ArticleRemote
 import com.anangkur.beritaku.remote.mapper.ArticleMapper

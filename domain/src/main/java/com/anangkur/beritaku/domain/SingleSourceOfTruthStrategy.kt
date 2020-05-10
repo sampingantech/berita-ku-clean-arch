@@ -3,7 +3,7 @@ package com.anangkur.beritaku.domain
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import androidx.lifecycle.map
-import com.anangkur.beritaku.core.base.BaseResult
+import com.anangkur.beritaku.core.BaseResult
 import kotlinx.coroutines.Dispatchers
 
 fun <T, A> resultLiveData(

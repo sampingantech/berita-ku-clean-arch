@@ -9,8 +9,8 @@ import beritaku.features.news.mapper.ArticleMapper
 import beritaku.features.news.model.ArticleIntent
 import beritaku.features.news.obtainViewModel
 import beritaku.features.news.originalNews.OriginalNewsActivity
-import com.anangkur.beritaku.core.base.BaseActivity
-import com.anangkur.beritaku.core.util.setImageUrl
+import beritaku.features.news.base.BaseActivity
+import beritaku.features.news.setImageUrl
 import com.anangkur.beritaku.presentation.features.news.DetailViewModel
 import kotlinx.android.synthetic.main.activity_detail.*
 import kotlinx.android.synthetic.main.layout_toolbar.*

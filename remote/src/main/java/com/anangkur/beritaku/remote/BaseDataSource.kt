@@ -1,6 +1,6 @@
 package com.anangkur.beritaku.remote
 
-import com.anangkur.beritaku.core.base.BaseResult
+import com.anangkur.beritaku.core.BaseResult
 import retrofit2.Response
 
 abstract class BaseDataSource {
