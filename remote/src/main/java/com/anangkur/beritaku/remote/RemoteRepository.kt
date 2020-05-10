@@ -4,12 +4,19 @@ import com.anangkur.beritaku.core.base.BaseResult
 import com.anangkur.beritaku.data.model.ArticleEntity
 import com.anangkur.beritaku.data.repository.ArticleRemote
 import com.anangkur.beritaku.remote.mapper.ArticleMapper
-import javax.inject.Inject
 
 class RemoteRepository (
     private val mapper: ArticleMapper,
     private val service: ApiService
 ): ArticleRemote, BaseDataSource() {
+
+    companion object{
+        private var INSTANCE: RemoteRepository? = null
+        fun getInstance() = INSTANCE ?: RemoteRepository(
+            ArticleMapper.getInstance(),
+            ApiService.getApiService
+        )
+    }
 
     override suspend fun getTopHeadlinesNews(
         apiKey: String?,

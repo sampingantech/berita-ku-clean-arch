@@ -5,9 +5,14 @@ import com.anangkur.beritaku.core.base.BaseResult
 import com.anangkur.beritaku.data.model.ArticleEntity
 import com.anangkur.beritaku.data.repository.ArticleDataStore
 import com.anangkur.beritaku.data.repository.ArticleLocal
-import javax.inject.Inject
 
 class ArticleLocalDataStore (private val articleLocal: ArticleLocal): ArticleDataStore {
+
+    companion object{
+        private var INSTANCE: ArticleLocalDataStore? = null
+        fun getInstance(articleLocal: ArticleLocal) = INSTANCE ?: ArticleLocalDataStore(articleLocal)
+    }
+
     override suspend fun insertData(data: List<ArticleEntity>) {
         articleLocal.insertData(data)
     }

@@ -1,23 +1,31 @@
 package com.anangkur.beritaku.local
 
+import android.content.Context
 import android.content.SharedPreferences
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.map
-import com.anangkur.beritaku.core.util.Const
+import androidx.room.Room
 import com.anangkur.beritaku.data.model.ArticleEntity
 import com.anangkur.beritaku.data.repository.ArticleLocal
-import com.anangkur.beritaku.local.dao.AppDao
 import com.anangkur.beritaku.local.db.AppDatabase
 import com.anangkur.beritaku.local.mapper.ArticleMapper
-import javax.inject.Inject
 
 class LocalRepository(
     private val preferences: SharedPreferences,
     private val mapper: ArticleMapper,
     private val appDatabase: AppDatabase
 ): ArticleLocal {
-    private val expirationTime = (60 * 10 * 1000).toLong()
 
+    companion object{
+        private var INSTANCE: LocalRepository? = null
+        fun getInstance(context: Context) = INSTANCE ?: LocalRepository(
+            context.getSharedPreferences(Const.PREF_NAME, Context.MODE_PRIVATE),
+            ArticleMapper.getInstance(),
+            AppDatabase.getDatabase(context)
+        )
+    }
+
+    private val expirationTime = (60 * 10 * 1000).toLong()
 
     override suspend fun insertData(data: List<ArticleEntity>) { data.forEach { appDatabase.getDao().insertData(mapper.mapToCached(it)) } }
 

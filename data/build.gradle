@@ -9,8 +9,8 @@ dependencies {
     implementation(project(':core'))
     implementation(project(':domain'))
 
-    implementation Deps.dagger
-    kapt Deps.daggerCompiler
+//    implementation Deps.dagger
+//    kapt Deps.daggerCompiler
 
     implementation Deps.androidxLivedata
 }

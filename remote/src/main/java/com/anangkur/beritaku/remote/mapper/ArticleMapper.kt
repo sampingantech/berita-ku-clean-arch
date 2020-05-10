@@ -2,9 +2,14 @@ package com.anangkur.beritaku.remote.mapper
 
 import com.anangkur.beritaku.data.model.ArticleEntity
 import com.anangkur.beritaku.remote.model.ArticleModel
-import javax.inject.Inject
 
 class ArticleMapper: Mapper<ArticleModel, ArticleEntity> {
+
+    companion object{
+        private var INSTANCE: ArticleMapper? = null
+        fun getInstance() = INSTANCE ?: ArticleMapper()
+    }
+
     override fun mapFromRemote(type: ArticleModel): ArticleEntity {
         return ArticleEntity(
             id = type.id,

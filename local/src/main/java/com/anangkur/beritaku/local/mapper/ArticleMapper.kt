@@ -2,9 +2,14 @@ package com.anangkur.beritaku.local.mapper
 
 import com.anangkur.beritaku.data.model.ArticleEntity
 import com.anangkur.beritaku.local.model.ArticleCached
-import javax.inject.Inject
 
 class ArticleMapper : Mapper<ArticleCached, ArticleEntity> {
+
+    companion object{
+        private var INSTANCE: ArticleMapper? = null
+        fun getInstance() = INSTANCE ?: ArticleMapper()
+    }
+
     override fun mapFromCached(type: ArticleCached): ArticleEntity {
         return ArticleEntity(
             id = type.id,

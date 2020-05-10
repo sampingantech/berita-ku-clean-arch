@@ -2,9 +2,14 @@ package com.anangkur.beritaku.data.mapper
 
 import com.anangkur.beritaku.data.model.ArticleEntity
 import com.anangkur.beritaku.domain.model.Article
-import javax.inject.Inject
 
 class ArticleMapper: Mapper<ArticleEntity, Article> {
+
+    companion object{
+        private var INSTANCE: ArticleMapper? = null
+        fun getInstance() = INSTANCE ?:ArticleMapper()
+    }
+
     override fun mapToEntity(type: Article): ArticleEntity {
         return ArticleEntity(
             id = type.id,

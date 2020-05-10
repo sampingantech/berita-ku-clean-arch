@@ -4,20 +4,16 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.widget.Toolbar
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import beritaku.feature.news.R
-import beritaku.features.news.injection.DaggerApplicationComponent
-import beritaku.features.news.injection.module.AppModule
 import beritaku.features.news.mapper.ArticleMapper
 import beritaku.features.news.model.ArticleIntent
+import beritaku.features.news.obtainViewModel
 import beritaku.features.news.originalNews.OriginalNewsActivity
 import com.anangkur.beritaku.core.base.BaseActivity
 import com.anangkur.beritaku.core.util.setImageUrl
 import com.anangkur.beritaku.presentation.features.news.DetailViewModel
 import kotlinx.android.synthetic.main.activity_detail.*
 import kotlinx.android.synthetic.main.layout_toolbar.*
-import javax.inject.Inject
 
 class DetailActivity: BaseActivity<DetailViewModel>(), DetailActivityActionListener {
 
@@ -32,17 +28,13 @@ class DetailActivity: BaseActivity<DetailViewModel>(), DetailActivityActionListe
     override val mLayout: Int
         get() = R.layout.activity_detail
     override val mViewModel: DetailViewModel
-        get() = ViewModelProviders.of(this, viewModelFactory).get(DetailViewModel::class.java)
+        get() = obtainViewModel(DetailViewModel::class.java)
     override val mToolbar: Toolbar?
         get() = toolbar
     override val mTitleToolbar: String?
         get() = null
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
-
-    @Inject
-    lateinit var mapper: ArticleMapper
+    private val mapper = ArticleMapper()
 
     private lateinit var articleIntent: ArticleIntent
 
@@ -68,13 +60,5 @@ class DetailActivity: BaseActivity<DetailViewModel>(), DetailActivityActionListe
 
     override fun onClickSeeOriginal(url: String) {
         OriginalNewsActivity.startActivity(this, url)
-    }
-
-    override fun onCreateInjector() {
-        DaggerApplicationComponent
-            .builder()
-            .appModule(AppModule(this))
-            .build()
-            .inject(this)
     }
 }

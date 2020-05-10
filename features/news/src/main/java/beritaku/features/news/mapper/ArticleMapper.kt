@@ -2,9 +2,8 @@ package beritaku.features.news.mapper
 
 import beritaku.features.news.model.ArticleIntent
 import com.anangkur.beritaku.presentation.model.ArticleView
-import javax.inject.Inject
 
-class ArticleMapper @Inject constructor(): Mapper<ArticleIntent, ArticleView> {
+class ArticleMapper: Mapper<ArticleIntent, ArticleView> {
     override fun mapToIntent(type: ArticleView): ArticleIntent {
         return ArticleIntent(
             id = type.id,

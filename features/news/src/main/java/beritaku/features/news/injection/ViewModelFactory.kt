@@ -1,24 +1,31 @@
 package beritaku.features.news.injection
 
+import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import javax.inject.Inject
-import javax.inject.Provider
-import javax.inject.Singleton
+import com.anangkur.beritaku.domain.features.news.GetArticles
+import com.anangkur.beritaku.presentation.features.news.DetailViewModel
+import com.anangkur.beritaku.presentation.features.news.HomeViewModel
+import com.anangkur.beritaku.presentation.mapper.ArticleMapper
 
-class ViewModelFactory @Inject constructor(
-    private val creators: Map<Class<out ViewModel>, @JvmSuppressWildcards Provider<ViewModel>>
-) : ViewModelProvider.Factory {
+class ViewModelFactory(private val getArticles: GetArticles, private val articleMapper: ArticleMapper): ViewModelProvider.NewInstanceFactory() {
 
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        val creator = creators[modelClass]
-            ?: creators.asIterable().firstOrNull { modelClass.isAssignableFrom(it.key) }?.value
-            ?: throw IllegalArgumentException("unknown model class $modelClass")
+    override fun <T : ViewModel?> create(modelClass: Class<T>): T  =
+        with(modelClass) {
+            when {
+                isAssignableFrom(HomeViewModel::class.java) -> HomeViewModel(getArticles, articleMapper)
+                isAssignableFrom(DetailViewModel::class.java) -> DetailViewModel()
+                else -> throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
+            }
+        } as T
 
-        return try {
-            creator.get() as T
-        } catch (e: Exception) {
-            throw RuntimeException(e)
+    companion object{
+        @Volatile private var INSTANCE: ViewModelFactory? = null
+        fun getInstance(context: Context) = INSTANCE ?: synchronized(ViewModelFactory::class.java){
+            INSTANCE ?: ViewModelFactory(
+                Injection.provideGetArticle(context),
+                ArticleMapper.getInstance()
+            ).also { INSTANCE = it }
         }
     }
 }

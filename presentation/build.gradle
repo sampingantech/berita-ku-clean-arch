@@ -8,8 +8,8 @@ dependencies {
 
     api project(':domain')
 
-    implementation Deps.dagger
-    kapt Deps.daggerCompiler
+//    implementation Deps.dagger
+//    kapt Deps.daggerCompiler
 
     implementation Deps.androidxLifeCycleExtension
 }

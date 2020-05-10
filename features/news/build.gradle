@@ -23,10 +23,10 @@ dependencies {
     implementation(project(':remote'))
     implementation(project(':domain'))
 
-    implementation Deps.dagger
-    implementation Deps.daggerSupport
-    kapt Deps.daggerCompiler
-    kapt Deps.daggerProcessor
+//    implementation Deps.dagger
+//    implementation Deps.daggerSupport
+//    kapt Deps.daggerCompiler
+//    kapt Deps.daggerProcessor
 
     implementation Deps.androidxRoom
     kapt Deps.androidxRoomCompiler

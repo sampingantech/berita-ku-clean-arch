@@ -4,15 +4,28 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.map
 import com.anangkur.beritaku.core.base.BaseResult
 import com.anangkur.beritaku.data.mapper.ArticleMapper
+import com.anangkur.beritaku.data.repository.ArticleLocal
+import com.anangkur.beritaku.data.repository.ArticleRemote
 import com.anangkur.beritaku.data.source.ArticleDataStoreFactory
 import com.anangkur.beritaku.domain.model.Article
 import com.anangkur.beritaku.domain.repository.ArticleRepository
-import javax.inject.Inject
 
 class ArticleDataRepository (
     private val factory: ArticleDataStoreFactory,
     private val mapper: ArticleMapper
 ): ArticleRepository {
+
+    companion object{
+        private var INSTANCE: ArticleDataRepository? = null
+        fun getInstance(
+            articleLocal: ArticleLocal,
+            articleRemote: ArticleRemote
+        ) = INSTANCE ?: ArticleDataRepository(
+            ArticleDataStoreFactory.getInstance(articleLocal, articleRemote),
+            ArticleMapper.getInstance()
+        )
+    }
+
     override suspend fun clearArticle(category: String) {
         factory.retrieveCacheDataStore().deleteByCategory(category)
     }

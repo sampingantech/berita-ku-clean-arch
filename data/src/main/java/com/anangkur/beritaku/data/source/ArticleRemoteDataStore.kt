@@ -5,9 +5,14 @@ import com.anangkur.beritaku.core.base.BaseResult
 import com.anangkur.beritaku.data.model.ArticleEntity
 import com.anangkur.beritaku.data.repository.ArticleDataStore
 import com.anangkur.beritaku.data.repository.ArticleRemote
-import javax.inject.Inject
 
 class ArticleRemoteDataStore (private val articleRemote: ArticleRemote): ArticleDataStore {
+
+    companion object{
+        private var INSTANCE: ArticleRemoteDataStore? = null
+        fun getInstance(articleRemote: ArticleRemote) = INSTANCE ?: ArticleRemoteDataStore(articleRemote)
+    }
+
     override suspend fun insertData(data: List<ArticleEntity>) {
         throw UnsupportedOperationException()
     }
