@@ -4,9 +4,9 @@ import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.ViewModel
-import beritaku.features.news.home.HomeActivity
+import com.anangkur.beritaku.feature.home.HomeActivity
 import com.anangkur.beritaku.R
-import beritaku.features.news.base.BaseActivity
+import com.anangkur.beritaku.base.BaseActivity
 
 class SplashActivity: BaseActivity<ViewModel>(){
 

@@ -5,8 +5,8 @@ apply plugin: 'kotlin-android-extensions'
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation(project(':core'))
     implementation(project(':domain'))
+    implementation(project(':core'))
 
     implementation Deps.androidxLivedata
 }

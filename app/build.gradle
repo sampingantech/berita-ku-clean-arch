@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     defaultConfig {
@@ -24,11 +25,24 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation(project(':core'))
+
+    implementation(project(':presentation'))
     implementation(project(':data'))
-    implementation(project(':features:news'))
+    implementation(project(':local'))
+    implementation(project(':remote'))
+    implementation(project(':domain'))
+    implementation(project(':core'))
 
-    implementation Deps.androidxAppCompat
+    implementation Deps.androidxRoom
+    kapt Deps.androidxRoomCompiler
 
-    implementation Deps.androidxViewModel
+    implementation Deps.androidxLifeCycleExtension
+
+    implementation Deps.androidxConstraintLayout
+
+    implementation Deps.materialLoadingButton
+    implementation Deps.multilineCollapsingToolbar
+
+    implementation Deps.glide
+    kapt Deps.glideCompiler
 }

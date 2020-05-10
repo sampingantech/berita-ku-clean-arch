@@ -7,7 +7,6 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation(project(':data'))
-    implementation(project(':core'))
 
     implementation Deps.androidxRoom
     kapt Deps.androidxRoomCompiler

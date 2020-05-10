@@ -11,7 +11,6 @@ buildscript {
     dependencies {
         classpath Deps.toolsGradleAndroid
         classpath Deps.toolsKotlin
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
 
@@ -20,17 +19,6 @@ allprojects {
         google()
         jcenter()
         maven { url 'https://jitpack.io' }
-    }
-    gradle.projectsEvaluated {
-        tasks.withType(JavaCompile) {
-            options.compilerArgs << "-Xmaxerrs" << "1000000"
-        }
-    }
-    afterEvaluate {
-        extensions.findByName('kapt')?.arguments {
-            arg("dagger.formatGeneratedSource", "disabled")
-            arg("dagger.gradle.incremental", "enabled")
-        }
     }
 }
 

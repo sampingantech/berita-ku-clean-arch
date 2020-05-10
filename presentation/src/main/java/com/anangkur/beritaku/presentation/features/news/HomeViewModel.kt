@@ -2,7 +2,7 @@ package com.anangkur.beritaku.presentation.features.news
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.anangkur.beritaku.domain.features.news.GetArticles
+import com.anangkur.beritaku.domain.GetArticles
 import com.anangkur.beritaku.presentation.mapper.ArticleMapper
 import com.anangkur.beritaku.presentation.model.ArticleView
 
