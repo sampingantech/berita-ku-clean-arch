@@ -1,6 +1,15 @@
 package beritaku.features.news.injection.module
 
+import com.anangkur.beritaku.domain.features.news.GetArticles
+import com.anangkur.beritaku.domain.repository.ArticleRepository
 import dagger.Module
+import dagger.Provides
 
 @Module
-abstract class DomainModule
+class DomainModule{
+
+    @Provides
+    fun provideGetArticle(): GetArticles{
+        return GetArticles()
+    }
+}

@@ -4,7 +4,7 @@ import com.anangkur.beritaku.domain.model.Article
 import com.anangkur.beritaku.presentation.model.ArticleView
 import javax.inject.Inject
 
-class ArticleMapper @Inject constructor() : Mapper<ArticleView, Article> {
+class ArticleMapper @Inject constructor(): Mapper<ArticleView, Article> {
     override fun mapToView(type: Article): ArticleView {
         return ArticleView(
             id = type.id,

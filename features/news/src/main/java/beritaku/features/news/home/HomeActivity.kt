@@ -11,11 +11,12 @@ import androidx.lifecycle.ViewModelProviders
 import beritaku.feature.news.R
 import beritaku.features.news.detail.DetailActivity
 import beritaku.features.news.injection.DaggerApplicationComponent
+import beritaku.features.news.injection.module.AppModule
 import beritaku.features.news.mapper.ArticleMapper
 import beritaku.features.news.model.ArticleIntent
 import com.anangkur.beritaku.core.base.BaseActivity
-import com.anangkur.beritaku.core.util.setImageUrl
-import com.anangkur.beritaku.core.util.setupRecyclerViewLinear
+import com.anangkur.beritaku.core.base.BaseResult
+import com.anangkur.beritaku.core.util.*
 import com.anangkur.beritaku.presentation.features.news.HomeViewModel
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.layout_toolbar.*
@@ -187,6 +188,7 @@ class HomeActivity: BaseActivity<HomeViewModel>(), HomeActionListener {
     override fun onCreateInjector() {
         DaggerApplicationComponent
             .builder()
+            .appModule(AppModule(this))
             .build()
             .inject(this)
     }

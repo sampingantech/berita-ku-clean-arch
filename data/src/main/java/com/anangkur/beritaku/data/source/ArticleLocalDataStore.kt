@@ -7,7 +7,7 @@ import com.anangkur.beritaku.data.repository.ArticleDataStore
 import com.anangkur.beritaku.data.repository.ArticleLocal
 import javax.inject.Inject
 
-class ArticleLocalDataStore @Inject constructor(private val articleLocal: ArticleLocal): ArticleDataStore {
+class ArticleLocalDataStore (private val articleLocal: ArticleLocal): ArticleDataStore {
     override suspend fun insertData(data: List<ArticleEntity>) {
         articleLocal.insertData(data)
     }

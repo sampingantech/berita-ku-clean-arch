@@ -4,7 +4,7 @@ import com.anangkur.beritaku.data.model.ArticleEntity
 import com.anangkur.beritaku.remote.model.ArticleModel
 import javax.inject.Inject
 
-class ArticleMapper @Inject constructor(): Mapper<ArticleModel, ArticleEntity> {
+class ArticleMapper: Mapper<ArticleModel, ArticleEntity> {
     override fun mapFromRemote(type: ArticleModel): ArticleEntity {
         return ArticleEntity(
             id = type.id,

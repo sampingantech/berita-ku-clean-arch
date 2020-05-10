@@ -3,14 +3,13 @@ package com.anangkur.beritaku.domain.features.news
 import com.anangkur.beritaku.core.util.Const
 import com.anangkur.beritaku.domain.repository.ArticleRepository
 import com.anangkur.beritaku.domain.resultLiveData
-import javax.inject.Inject
 
-open class GetArticles @Inject constructor(/*val articleRepository: ArticleRepository*/) {
+open class GetArticles (/*val articleRepository: ArticleRepository*/) {
 
 //    fun getTopHeadlinesNews() = resultLiveData(
-//        databaseQuery = { articleRepository.getAllDataByCategory(Const.CATEGORY_GENERAL) },
+//        databaseQuery = { articleRepository.getArticlesLocal(Const.CATEGORY_GENERAL) },
 //        networkCall = {
-//            articleRepository.getTopHeadlinesNews(
+//            articleRepository.getArticleRemote(
 //                Const.API_KEY,
 //                Const.COUNTRY_ID,
 //                Const.CATEGORY_GENERAL,
@@ -27,9 +26,9 @@ open class GetArticles @Inject constructor(/*val articleRepository: ArticleRepos
 //    )
 //
 //    fun getBusinessNews() = resultLiveData(
-//        databaseQuery = { articleRepository.getAllDataByCategory(Const.CATEGORY_BUSSINESS) },
+//        databaseQuery = { articleRepository.getArticlesLocal(Const.CATEGORY_BUSSINESS) },
 //        networkCall = {
-//            articleRepository.getTopHeadlinesNews(
+//            articleRepository.getArticleRemote(
 //                Const.API_KEY,
 //                Const.COUNTRY_ID,
 //                Const.CATEGORY_BUSSINESS,
@@ -46,9 +45,9 @@ open class GetArticles @Inject constructor(/*val articleRepository: ArticleRepos
 //    )
 //
 //    fun getTechNews() = resultLiveData(
-//        databaseQuery = { articleRepository.getAllDataByCategory(Const.CATEGORY_TECHNOLOGY) },
+//        databaseQuery = { articleRepository.getArticlesLocal(Const.CATEGORY_TECHNOLOGY) },
 //        networkCall = {
-//            articleRepository.getTopHeadlinesNews(
+//            articleRepository.getArticleRemote(
 //                Const.API_KEY,
 //                Const.COUNTRY_ID,
 //                Const.CATEGORY_TECHNOLOGY,
@@ -65,9 +64,9 @@ open class GetArticles @Inject constructor(/*val articleRepository: ArticleRepos
 //    )
 //
 //    fun getSportNews() = resultLiveData(
-//        databaseQuery = { articleRepository.getAllDataByCategory(Const.CATEGOGY_SPORT) },
+//        databaseQuery = { articleRepository.getArticlesLocal(Const.CATEGOGY_SPORT) },
 //        networkCall = {
-//            articleRepository.getTopHeadlinesNews(
+//            articleRepository.getArticleRemote(
 //                Const.API_KEY,
 //                Const.COUNTRY_ID,
 //                Const.CATEGOGY_SPORT,

@@ -8,8 +8,8 @@ import com.anangkur.beritaku.presentation.model.ArticleView
 import javax.inject.Inject
 
 class HomeViewModel @Inject constructor(
-      private val getArticles: GetArticles,
-      val mapper: ArticleMapper
+    private val getArticles: GetArticles,
+    val mapper: ArticleMapper
 ): ViewModel(){
 
 //    val topHeadlineNewsLive by lazy { getArticles.getTopHeadlinesNews() }

@@ -4,7 +4,7 @@ import com.anangkur.beritaku.data.model.ArticleEntity
 import com.anangkur.beritaku.local.model.ArticleCached
 import javax.inject.Inject
 
-class ArticleMapper @Inject constructor() : Mapper<ArticleCached, ArticleEntity> {
+class ArticleMapper : Mapper<ArticleCached, ArticleEntity> {
     override fun mapFromCached(type: ArticleCached): ArticleEntity {
         return ArticleEntity(
             id = type.id,

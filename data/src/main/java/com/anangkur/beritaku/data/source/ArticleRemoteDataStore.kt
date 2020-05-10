@@ -7,7 +7,7 @@ import com.anangkur.beritaku.data.repository.ArticleDataStore
 import com.anangkur.beritaku.data.repository.ArticleRemote
 import javax.inject.Inject
 
-class ArticleRemoteDataStore @Inject constructor(private val articleRemote: ArticleRemote): ArticleDataStore {
+class ArticleRemoteDataStore (private val articleRemote: ArticleRemote): ArticleDataStore {
     override suspend fun insertData(data: List<ArticleEntity>) {
         throw UnsupportedOperationException()
     }

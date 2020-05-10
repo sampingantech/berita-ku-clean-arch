@@ -9,7 +9,7 @@ import com.anangkur.beritaku.domain.model.Article
 import com.anangkur.beritaku.domain.repository.ArticleRepository
 import javax.inject.Inject
 
-class ArticleDataRepository @Inject constructor(
+class ArticleDataRepository (
     private val factory: ArticleDataStoreFactory,
     private val mapper: ArticleMapper
 ): ArticleRepository {
@@ -21,11 +21,11 @@ class ArticleDataRepository @Inject constructor(
         factory.retrieveCacheDataStore().insertData(articles.map { mapper.mapToEntity(it) })
     }
 
-    override fun getAllDataByCategory(category: String): LiveData<List<Article>> {
+    override fun getArticlesLocal(category: String): LiveData<List<Article>> {
         return factory.retrieveCacheDataStore().getAllDataByCategory(category).map { list -> list.map { mapper.mapFromEntity(it) } }
     }
 
-    override suspend fun getTopHeadlinesNews(
+    override suspend fun getArticleRemote(
         apiKey: String?,
         country: String?,
         category: String?,

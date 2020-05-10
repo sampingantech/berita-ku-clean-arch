@@ -6,8 +6,10 @@ import beritaku.features.news.injection.ViewModelFactory
 import beritaku.features.news.injection.ViewModelKey
 import com.anangkur.beritaku.presentation.features.news.DetailViewModel
 import com.anangkur.beritaku.presentation.features.news.HomeViewModel
+import com.anangkur.beritaku.presentation.mapper.ArticleMapper
 import dagger.Binds
 import dagger.Module
+import dagger.Provides
 import dagger.multibindings.IntoMap
 
 @Module

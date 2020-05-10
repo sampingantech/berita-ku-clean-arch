@@ -6,7 +6,7 @@ import com.anangkur.beritaku.data.repository.ArticleRemote
 import com.anangkur.beritaku.remote.mapper.ArticleMapper
 import javax.inject.Inject
 
-class RemoteRepository @Inject constructor(
+class RemoteRepository (
     private val mapper: ArticleMapper,
     private val service: ApiService
 ): ArticleRemote, BaseDataSource() {

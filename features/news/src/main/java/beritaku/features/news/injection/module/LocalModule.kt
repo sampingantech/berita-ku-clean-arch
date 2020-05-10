@@ -1,30 +1,44 @@
 package beritaku.features.news.injection.module
 
-import android.app.Application
+import android.content.Context
+import android.content.SharedPreferences
 import androidx.room.Room
 import com.anangkur.beritaku.data.repository.ArticleLocal
 import com.anangkur.beritaku.local.LocalRepository
 import com.anangkur.beritaku.local.db.AppDatabase
 import com.anangkur.beritaku.local.db.constant.Const
-import dagger.Binds
+import com.anangkur.beritaku.local.mapper.ArticleMapper
 import dagger.Module
 import dagger.Provides
 
 @Module
-abstract class LocalModule {
+class LocalModule {
 
-    @Module
-    companion object{
-        @Provides
-        @JvmStatic
-        fun provideArticleDatabase(application: Application): AppDatabase {
-            return Room.databaseBuilder(
-                application.applicationContext,
-                AppDatabase::class.java, Const.DATABASE_NAME
-            ).build()
-        }
+    @Provides
+    fun provideArticleDatabase(context: Context): AppDatabase {
+        return Room.databaseBuilder(
+            context,
+            AppDatabase::class.java,
+            Const.DATABASE_NAME
+        ).build()
     }
 
-    @Binds
-    abstract fun bindLocalRepository(localRepository: LocalRepository): ArticleLocal
+    @Provides
+    fun provideArticleMapper(): ArticleMapper{
+        return ArticleMapper()
+    }
+
+    @Provides
+    fun providePreferences(context: Context): SharedPreferences {
+        return context.getSharedPreferences(Const.PREF_NAME, Context.MODE_PRIVATE)
+    }
+
+    @Provides
+    fun provideArticleLocal(
+        preferences: SharedPreferences,
+        appDatabase: AppDatabase,
+        mapper: ArticleMapper
+    ): ArticleLocal {
+        return LocalRepository(preferences, mapper, appDatabase)
+    }
 }

@@ -4,27 +4,27 @@ import android.content.SharedPreferences
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.map
 import com.anangkur.beritaku.core.util.Const
-import com.anangkur.beritaku.data.DataSource
 import com.anangkur.beritaku.data.model.ArticleEntity
 import com.anangkur.beritaku.data.repository.ArticleLocal
 import com.anangkur.beritaku.local.dao.AppDao
+import com.anangkur.beritaku.local.db.AppDatabase
 import com.anangkur.beritaku.local.mapper.ArticleMapper
 import javax.inject.Inject
 
-class LocalRepository @Inject constructor(
+class LocalRepository(
     private val preferences: SharedPreferences,
     private val mapper: ArticleMapper,
-    private val dao: AppDao
+    private val appDatabase: AppDatabase
 ): ArticleLocal {
     private val expirationTime = (60 * 10 * 1000).toLong()
 
 
-    override suspend fun insertData(data: List<ArticleEntity>) { data.forEach { dao.insertData(mapper.mapToCached(it)) } }
+    override suspend fun insertData(data: List<ArticleEntity>) { data.forEach { appDatabase.getDao().insertData(mapper.mapToCached(it)) } }
 
-    override suspend fun deleteByCategory(category: String) { dao.deleteByCategory(category) }
+    override suspend fun deleteByCategory(category: String) { appDatabase.getDao().deleteByCategory(category) }
 
     override fun getAllDataByCategory(category: String): LiveData<List<ArticleEntity>> {
-        return dao.getAllDataByCategory(category).map { list -> list.map { mapper.mapFromCached(it) } }
+        return appDatabase.getDao().getAllDataByCategory(category).map { list -> list.map { mapper.mapFromCached(it) } }
     }
 
     override fun isExpired(): Boolean {
