@@ -9,6 +9,9 @@ object Config {
 }
 
 object Versions {
+    const val javaxAnnotationVersion = "1.0"
+    const val javaxInjectVersion = "1"
+
     const val kotlinVersion = "1.3.61"
     const val gradleAndroid = "3.5.0"
 
@@ -36,10 +39,13 @@ object Versions {
 
     const val chuckVersion= "1.1.0"
 
-    const val daggerVersion = "2.11"
+    const val daggerVersion = "2.25.3"
 }
 
 object Deps {
+
+    const val javaxAnnotation = "javax.annotation:jsr250-api:${Versions.javaxAnnotationVersion}"
+    const val javaxInject = "javax.inject:javax.inject:${Versions.javaxInjectVersion}"
 
     // androidx
     const val androidxConstraintLayout = "androidx.constraintlayout:constraintlayout:${Versions.constraintLayoutVersion}"

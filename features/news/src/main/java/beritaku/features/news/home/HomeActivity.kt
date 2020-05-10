@@ -10,13 +10,12 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import beritaku.feature.news.R
 import beritaku.features.news.detail.DetailActivity
-import beritaku.features.news.injection.ApplicationComponent
 import beritaku.features.news.injection.DaggerApplicationComponent
 import beritaku.features.news.mapper.ArticleMapper
 import beritaku.features.news.model.ArticleIntent
 import com.anangkur.beritaku.core.base.BaseActivity
-import com.anangkur.beritaku.core.util.*
-import com.anangkur.beritaku.core.base.BaseResult
+import com.anangkur.beritaku.core.util.setImageUrl
+import com.anangkur.beritaku.core.util.setupRecyclerViewLinear
 import com.anangkur.beritaku.presentation.features.news.HomeViewModel
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.layout_toolbar.*
@@ -62,77 +61,77 @@ class HomeActivity: BaseActivity<HomeViewModel>(), HomeActionListener {
 
     private fun observeViewModel(){
         mViewModel.apply {
-            topHeadlineNewsLive.observe(this@HomeActivity, Observer {
-                when (it.status){
-                    BaseResult.Status.LOADING -> {
-                        if (it.isLoading!!){
-                            pb_breaking.visible()
-                        }else{
-                            pb_breaking.gone()
-                        }
-                    }
-                    BaseResult.Status.ERROR -> {
-                        showSnackbarShort(it.message?:"")
-                    }
-                    BaseResult.Status.SUCCESS -> {
-                         separateMoviesBreaking(it.data?.map { item -> mViewModel.mapper.mapToView(item) })
-                    }
-                }
-            })
-            businessNewsLive.observe(this@HomeActivity, Observer {
-                when (it.status){
-                    BaseResult.Status.LOADING -> {
-                        if (it.isLoading!!){
-                            pb_business.visible()
-                        }else{
-                            pb_business.gone()
-                        }
-                    }
-                    BaseResult.Status.ERROR -> {
-                        showSnackbarShort(it.message?:"")
-                    }
-                    BaseResult.Status.SUCCESS -> {
-                         val data = it.data!!.map { mapper.mapToView(it) }
-                         if (it.data != null) adapterBusiness.setRecyclerData(data.map { this@HomeActivity.mapper.mapToIntent(it) })
-                    }
-                }
-            })
-            techNewsLive.observe(this@HomeActivity, Observer {
-                when (it.status){
-                    BaseResult.Status.LOADING -> {
-                        if (it.isLoading!!){
-                            pb_tech.visible()
-                        }else{
-                            pb_tech.gone()
-                        }
-                    }
-                    BaseResult.Status.ERROR -> {
-                        showSnackbarShort(it.message?:"")
-                    }
-                    BaseResult.Status.SUCCESS -> {
-                         val data = it.data!!.map { mapper.mapToView(it) }
-                         if (it.data != null) adapterTech.setRecyclerData(data.map { this@HomeActivity.mapper.mapToIntent(it) })
-                    }
-                }
-            })
-            sportNewsLive.observe(this@HomeActivity, Observer {
-                when (it.status){
-                    BaseResult.Status.LOADING -> {
-                        if (it.isLoading!!){
-                            pb_sport.visible()
-                        }else{
-                            pb_sport.gone()
-                        }
-                    }
-                    BaseResult.Status.ERROR -> {
-                        showSnackbarShort(it.message?:"")
-                    }
-                    BaseResult.Status.SUCCESS -> {
-                         val data = it.data!!.map { mapper.mapToView(it) }
-                         if (it.data != null) adapterSport.setRecyclerData(data.map { this@HomeActivity.mapper.mapToIntent(it) })
-                    }
-                }
-            })
+//            topHeadlineNewsLive.observe(this@HomeActivity, Observer {
+//                when (it.status){
+//                    BaseResult.Status.LOADING -> {
+//                        if (it.isLoading!!){
+//                            pb_breaking.visible()
+//                        }else{
+//                            pb_breaking.gone()
+//                        }
+//                    }
+//                    BaseResult.Status.ERROR -> {
+//                        showSnackbarShort(it.message?:"")
+//                    }
+//                    BaseResult.Status.SUCCESS -> {
+//                         separateMoviesBreaking(it.data?.map { item -> mViewModel.mapper.mapToView(item) })
+//                    }
+//                }
+//            })
+//            businessNewsLive.observe(this@HomeActivity, Observer {
+//                when (it.status){
+//                    BaseResult.Status.LOADING -> {
+//                        if (it.isLoading!!){
+//                            pb_business.visible()
+//                        }else{
+//                            pb_business.gone()
+//                        }
+//                    }
+//                    BaseResult.Status.ERROR -> {
+//                        showSnackbarShort(it.message?:"")
+//                    }
+//                    BaseResult.Status.SUCCESS -> {
+//                         val data = it.data!!.map { mapper.mapToView(it) }
+//                         if (it.data != null) adapterBusiness.setRecyclerData(data.map { this@HomeActivity.mapper.mapToIntent(it) })
+//                    }
+//                }
+//            })
+//            techNewsLive.observe(this@HomeActivity, Observer {
+//                when (it.status){
+//                    BaseResult.Status.LOADING -> {
+//                        if (it.isLoading!!){
+//                            pb_tech.visible()
+//                        }else{
+//                            pb_tech.gone()
+//                        }
+//                    }
+//                    BaseResult.Status.ERROR -> {
+//                        showSnackbarShort(it.message?:"")
+//                    }
+//                    BaseResult.Status.SUCCESS -> {
+//                         val data = it.data!!.map { mapper.mapToView(it) }
+//                         if (it.data != null) adapterTech.setRecyclerData(data.map { this@HomeActivity.mapper.mapToIntent(it) })
+//                    }
+//                }
+//            })
+//            sportNewsLive.observe(this@HomeActivity, Observer {
+//                when (it.status){
+//                    BaseResult.Status.LOADING -> {
+//                        if (it.isLoading!!){
+//                            pb_sport.visible()
+//                        }else{
+//                            pb_sport.gone()
+//                        }
+//                    }
+//                    BaseResult.Status.ERROR -> {
+//                        showSnackbarShort(it.message?:"")
+//                    }
+//                    BaseResult.Status.SUCCESS -> {
+//                         val data = it.data!!.map { mapper.mapToView(it) }
+//                         if (it.data != null) adapterSport.setRecyclerData(data.map { this@HomeActivity.mapper.mapToIntent(it) })
+//                    }
+//                }
+//            })
             firstTopHeadlineLive.observe(this@HomeActivity, Observer {
                 setupFirstBreaking(this@HomeActivity.mapper.mapToIntent(it))
             })

@@ -9,5 +9,5 @@ import dagger.Module
 abstract class DataModule {
 
     @Binds
-    abstract fun bindArticleDataRepository(articleDataRepository: ArticleDataRepository): ArticleRepository
+    abstract fun bindArticleRepository(articleDataRepository: ArticleDataRepository): ArticleRepository
 }

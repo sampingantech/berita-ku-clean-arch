@@ -4,6 +4,7 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 kapt {
+    generateStubs = true
     correctErrorTypes = true
     javacOptions {
         // Increase the max count of errors from annotation processors.

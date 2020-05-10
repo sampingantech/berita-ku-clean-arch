@@ -6,12 +6,10 @@ apply plugin: 'kotlin-kapt'
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation project(':domain')
+    api project(':domain')
 
     implementation Deps.dagger
-    implementation Deps.daggerSupport
     kapt Deps.daggerCompiler
-    kapt Deps.daggerProcessor
 
     implementation Deps.androidxLifeCycleExtension
 }

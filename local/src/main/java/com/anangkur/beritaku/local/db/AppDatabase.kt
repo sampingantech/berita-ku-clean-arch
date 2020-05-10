@@ -11,7 +11,7 @@ import com.anangkur.beritaku.local.model.ArticleCached
 import javax.inject.Inject
 
 @Database(entities = [ArticleCached::class], version = 1)
-abstract class AppDatabase @Inject constructor(): RoomDatabase(){
+abstract class AppDatabase: RoomDatabase(){
 
     abstract fun getDao(): AppDao
 
