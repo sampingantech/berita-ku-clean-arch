@@ -17,4 +17,18 @@ class ArticleMapper: Mapper<ArticleIntent, ArticleView> {
             urlToImage = type.urlToImage
         )
     }
+
+    override fun mapFromIntent(type: ArticleIntent): ArticleView {
+        return ArticleView(
+            id = type.id,
+            title = type.title,
+            author = type.author,
+            category = type.category,
+            content = type.content,
+            description = type.description,
+            publishedAt = type.publishedAt,
+            url = type.url,
+            urlToImage = type.urlToImage
+        )
+    }
 }

@@ -1,29 +1,31 @@
 package com.anangkur.beritaku.news.home
 
 import android.os.Bundle
+import android.view.View
 import android.widget.LinearLayout
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
+import com.anangkur.beritaku.*
+import com.anangkur.beritaku.base.BaseFragment
+import com.anangkur.beritaku.core.BaseResult
 import com.anangkur.beritaku.mapper.ArticleMapper
 import com.anangkur.beritaku.model.ArticleIntent
-import com.anangkur.beritaku.*
-import com.anangkur.beritaku.base.BaseActivity
-import com.anangkur.beritaku.core.BaseResult
-import com.anangkur.beritaku.presentation.features.news.HomeViewModel
-import kotlinx.android.synthetic.main.activity_home.*
+import com.anangkur.beritaku.news.NewsActivity
 import com.anangkur.beritaku.news.R
 import com.anangkur.beritaku.R as appR
+import com.anangkur.beritaku.presentation.features.news.NewsViewModel
+import kotlinx.android.synthetic.main.fragment_home.*
 
-class HomeActivity: BaseActivity<HomeViewModel>(), HomeActionListener {
+class HomeFragment: BaseFragment<NewsViewModel>(), HomeActionListener {
 
     override val mLayout: Int
-        get() = R.layout.activity_home
-    override val mViewModel: HomeViewModel
-        get() = obtainViewModel(HomeViewModel::class.java)
+        get() = R.layout.fragment_home
+    override val mViewModel: NewsViewModel
+        get() = (requireActivity() as NewsActivity).mViewModel
     override val mToolbar: Toolbar?
-        get() = findViewById(appR.id.toolbar)
-    override val mTitleToolbar: String?
-        get() = getString(appR.string.app_name)
+        get() = (requireActivity() as NewsActivity).mToolbar
 
     private lateinit var adapterBreaking: BreakingAdapter
     private lateinit var adapterBusiness: RegularAdapter
@@ -32,8 +34,8 @@ class HomeActivity: BaseActivity<HomeViewModel>(), HomeActionListener {
 
     private var mapper = ArticleMapper()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         setupAdapterBreaking()
         setupAdapterBusiness()
@@ -44,7 +46,7 @@ class HomeActivity: BaseActivity<HomeViewModel>(), HomeActionListener {
 
     private fun observeViewModel(){
         mViewModel.apply {
-            topHeadlineNewsLive.observe(this@HomeActivity, Observer {
+            topHeadlineNewsLive.observe(viewLifecycleOwner, Observer {
                 when (it.status){
                     BaseResult.Status.LOADING -> {
                         if (it.isLoading!!){
@@ -54,14 +56,14 @@ class HomeActivity: BaseActivity<HomeViewModel>(), HomeActionListener {
                         }
                     }
                     BaseResult.Status.ERROR -> {
-                        showSnackbarShort(it.message?:"")
+                        requireActivity().showSnackbarShort(it.message?:"")
                     }
                     BaseResult.Status.SUCCESS -> {
-                         separateMoviesBreaking(mapToView(it.data!!))
+                        separateMoviesBreaking(mapToView(it.data!!))
                     }
                 }
             })
-            businessNewsLive.observe(this@HomeActivity, Observer {
+            businessNewsLive.observe(viewLifecycleOwner, Observer {
                 when (it.status){
                     BaseResult.Status.LOADING -> {
                         if (it.isLoading!!){
@@ -71,18 +73,18 @@ class HomeActivity: BaseActivity<HomeViewModel>(), HomeActionListener {
                         }
                     }
                     BaseResult.Status.ERROR -> {
-                        showSnackbarShort(it.message?:"")
+                        requireActivity().showSnackbarShort(it.message?:"")
                     }
                     BaseResult.Status.SUCCESS -> {
-                         it.data?.let {listArticle ->
-                             adapterBusiness.setRecyclerData(mapToView(listArticle).map { articleView ->
-                                 this@HomeActivity.mapper.mapToIntent(articleView)
-                             })
-                         }
+                        it.data?.let {listArticle ->
+                            adapterBusiness.setRecyclerData(mapToView(listArticle).map { articleView ->
+                                mapper.mapToIntent(articleView)
+                            })
+                        }
                     }
                 }
             })
-            techNewsLive.observe(this@HomeActivity, Observer {
+            techNewsLive.observe(viewLifecycleOwner, Observer {
                 when (it.status){
                     BaseResult.Status.LOADING -> {
                         if (it.isLoading!!){
@@ -92,18 +94,18 @@ class HomeActivity: BaseActivity<HomeViewModel>(), HomeActionListener {
                         }
                     }
                     BaseResult.Status.ERROR -> {
-                        showSnackbarShort(it.message?:"")
+                        requireActivity().showSnackbarShort(it.message?:"")
                     }
                     BaseResult.Status.SUCCESS -> {
                         it.data?.let {listArticle ->
                             adapterTech.setRecyclerData(mapToView(listArticle).map { articleView ->
-                                this@HomeActivity.mapper.mapToIntent(articleView)
+                                mapper.mapToIntent(articleView)
                             })
                         }
                     }
                 }
             })
-            sportNewsLive.observe(this@HomeActivity, Observer {
+            sportNewsLive.observe(viewLifecycleOwner, Observer {
                 when (it.status){
                     BaseResult.Status.LOADING -> {
                         if (it.isLoading!!){
@@ -113,22 +115,22 @@ class HomeActivity: BaseActivity<HomeViewModel>(), HomeActionListener {
                         }
                     }
                     BaseResult.Status.ERROR -> {
-                        showSnackbarShort(it.message?:"")
+                        requireActivity().showSnackbarShort(it.message?:"")
                     }
                     BaseResult.Status.SUCCESS -> {
                         it.data?.let {listArticle ->
                             adapterSport.setRecyclerData(mapToView(listArticle).map { articleView ->
-                                this@HomeActivity.mapper.mapToIntent(articleView)
+                                mapper.mapToIntent(articleView)
                             })
                         }
                     }
                 }
             })
-            firstTopHeadlineLive.observe(this@HomeActivity, Observer {
-                setupFirstBreaking(this@HomeActivity.mapper.mapToIntent(it))
+            firstTopHeadlineLive.observe(viewLifecycleOwner, Observer {
+                setupFirstBreaking(mapper.mapToIntent(it))
             })
-            topHeadlineLive.observe(this@HomeActivity, Observer {list ->
-                adapterBreaking.setRecyclerData(list.map { this@HomeActivity.mapper.mapToIntent(it) })
+            topHeadlineLive.observe(viewLifecycleOwner, Observer {list ->
+                adapterBreaking.setRecyclerData(list.map { mapper.mapToIntent(it) })
             })
         }
     }
@@ -137,7 +139,7 @@ class HomeActivity: BaseActivity<HomeViewModel>(), HomeActionListener {
         adapterBreaking = BreakingAdapter(this)
         recycler_breaking.apply {
             adapter = adapterBreaking
-            setupRecyclerViewLinear(this@HomeActivity, LinearLayout.VERTICAL)
+            setupRecyclerViewLinear(requireContext(), LinearLayout.VERTICAL)
         }
     }
 
@@ -145,7 +147,7 @@ class HomeActivity: BaseActivity<HomeViewModel>(), HomeActionListener {
         adapterBusiness = RegularAdapter(this)
         recycler_business.apply {
             adapter = adapterBusiness
-            setupRecyclerViewLinear(this@HomeActivity, LinearLayout.HORIZONTAL)
+            setupRecyclerViewLinear(requireContext(), LinearLayout.HORIZONTAL)
         }
     }
 
@@ -153,7 +155,7 @@ class HomeActivity: BaseActivity<HomeViewModel>(), HomeActionListener {
         adapterTech = RegularAdapter(this)
         recycler_tech.apply {
             adapter = adapterTech
-            setupRecyclerViewLinear(this@HomeActivity, LinearLayout.HORIZONTAL)
+            setupRecyclerViewLinear(requireContext(), LinearLayout.HORIZONTAL)
         }
     }
 
@@ -161,7 +163,7 @@ class HomeActivity: BaseActivity<HomeViewModel>(), HomeActionListener {
         adapterSport = RegularAdapter(this)
         recycler_sport.apply {
             adapter = adapterSport
-            setupRecyclerViewLinear(this@HomeActivity, LinearLayout.HORIZONTAL)
+            setupRecyclerViewLinear(requireContext(), LinearLayout.HORIZONTAL)
         }
     }
 
@@ -173,6 +175,13 @@ class HomeActivity: BaseActivity<HomeViewModel>(), HomeActionListener {
     }
 
     override fun onClickItem(data: ArticleIntent) {
-        com.anangkur.beritaku.news.detail.DetailActivity.startActivity(this, data)
+        mViewModel.selectedNews = mapper.mapFromIntent(data)
+        findNavController().navigate(R.id.action_home_fragment_to_detail_fragment)
+    }
+
+    override fun setupToolbar(toolbar: Toolbar?) {
+        toolbar?.title = getString(appR.string.app_name)
+        toolbar?.navigationIcon = null
+        toolbar?.setNavigationOnClickListener(null)
     }
 }

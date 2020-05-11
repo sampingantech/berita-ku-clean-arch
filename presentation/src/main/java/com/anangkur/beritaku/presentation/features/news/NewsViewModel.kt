@@ -7,10 +7,13 @@ import com.anangkur.beritaku.domain.model.Article
 import com.anangkur.beritaku.presentation.mapper.ArticleMapper
 import com.anangkur.beritaku.presentation.model.ArticleView
 
-class HomeViewModel (
+class NewsViewModel (
     private val getArticles: GetArticles,
     private val mapper: ArticleMapper
 ): ViewModel(){
+
+    var selectedNews: ArticleView? = null
+    var originalNewsUrl = ""
 
     val topHeadlineNewsLive by lazy { getArticles.getTopHeadlinesNews() }
     val businessNewsLive by lazy { getArticles.getBusinessNews() }

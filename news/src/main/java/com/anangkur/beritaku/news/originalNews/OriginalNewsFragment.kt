@@ -1,6 +1,5 @@
 package com.anangkur.beritaku.news.originalNews
 
-import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
@@ -8,61 +7,58 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.view.View
 import android.webkit.WebResourceError
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.appcompat.widget.Toolbar
-import androidx.lifecycle.ViewModel
-import com.anangkur.beritaku.news.R
-import com.anangkur.beritaku.R as appR
-import com.anangkur.beritaku.base.BaseActivity
+import androidx.core.content.ContextCompat
 import com.anangkur.beritaku.base.BaseErrorView
+import com.anangkur.beritaku.base.BaseFragment
 import com.anangkur.beritaku.gone
+import com.anangkur.beritaku.news.NewsActivity
+import com.anangkur.beritaku.news.R
+import com.anangkur.beritaku.presentation.features.news.NewsViewModel
+import com.anangkur.beritaku.R as appR
 import com.anangkur.beritaku.visible
-import kotlinx.android.synthetic.main.activity_original_news.*
+import kotlinx.android.synthetic.main.fragment_original_news.*
 
-class OriginalNewsActivity: BaseActivity<ViewModel?>() {
-
-    companion object {
-        const val EXTRA_URL = "EXTRA_URL"
-        fun startActivity(context: Context, url: String){
-            context.startActivity(Intent(context, OriginalNewsActivity::class.java)
-                .putExtra(EXTRA_URL, url))
-        }
-    }
+class OriginalNewsFragment: BaseFragment<NewsViewModel>() {
 
     override val mLayout: Int
-        get() = R.layout.activity_original_news
-    override val mViewModel: ViewModel?
-        get() = null
+        get() = R.layout.fragment_original_news
+    override val mViewModel: NewsViewModel
+        get() = (requireActivity() as NewsActivity).mViewModel
     override val mToolbar: Toolbar?
-        get() = findViewById(appR.id.toolbar)
-    override val mTitleToolbar: String?
-        get() = null
+        get() = (requireActivity() as NewsActivity).mToolbar
 
-    private lateinit var url: String
     private var isSuccessLoadUrl = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        url = intent?.getStringExtra(EXTRA_URL)?:""
-        setupWebView(url)
+        setHasOptionsMenu(true)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        setupWebView(mViewModel.originalNewsUrl)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, menuInflater: MenuInflater) {
         val inflater: MenuInflater = menuInflater
         inflater.inflate(R.menu.menu_original_news, menu)
-        return true
+        super.onCreateOptionsMenu(menu, inflater)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId){
             R.id.menu_open_browser -> {
-                val webPage = Uri.parse(url)
+                val webPage = Uri.parse(mViewModel.originalNewsUrl)
                 val intent = Intent(Intent.ACTION_VIEW, webPage)
-                if (intent.resolveActivity(packageManager) != null) {
+                if (intent.resolveActivity(requireActivity().packageManager) != null) {
                     startActivity(intent)
                 }
                 true
@@ -108,5 +104,11 @@ class OriginalNewsActivity: BaseActivity<ViewModel?>() {
                 ev_original_news.visible()
             }
         }
+    }
+
+    override fun setupToolbar(toolbar: Toolbar?) {
+        toolbar?.title = mViewModel.selectedNews?.title
+        toolbar?.navigationIcon = ContextCompat.getDrawable(requireContext(), appR.drawable.ic_arrow_back_black_24dp)
+        toolbar?.setNavigationOnClickListener { requireActivity().onBackPressed() }
     }
 }

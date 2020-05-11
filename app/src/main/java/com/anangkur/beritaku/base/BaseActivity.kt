@@ -12,18 +12,15 @@ abstract class BaseActivity<T: ViewModel?>: AppCompatActivity(){
     abstract val mLayout: Int
     abstract val mViewModel: T?
     abstract val mToolbar: Toolbar?
-    abstract val mTitleToolbar: String?
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(mLayout)
 
-        setupToolbar()
+        setupToolbar(mToolbar)
     }
 
-    private fun setupToolbar(){
-        setSupportActionBar(mToolbar)
-        supportActionBar?.title = mTitleToolbar
-        mToolbar?.setNavigationOnClickListener { onBackPressed() }
+    private fun setupToolbar(toolbar: Toolbar?){
+        toolbar?.let { setSupportActionBar(it) }
     }
 }

@@ -9,15 +9,13 @@ import com.anangkur.beritaku.BuildConfig
 import com.anangkur.beritaku.R
 import com.anangkur.beritaku.base.BaseActivity
 
-class SplashActivity: BaseActivity<ViewModel>(){
+class SplashActivity: BaseActivity<Nothing>(){
 
     override val mLayout: Int
         get() = R.layout.activity_splash
-    override val mViewModel: ViewModel?
+    override val mViewModel: Nothing?
         get() = null
     override val mToolbar: Toolbar?
-        get() = null
-    override val mTitleToolbar: String?
         get() = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,7 +28,7 @@ class SplashActivity: BaseActivity<ViewModel>(){
         val handler = Handler()
         handler.postDelayed({
             val intent = Intent()
-            intent.setClassName(BuildConfig.APPLICATION_ID, "com.anangkur.beritaku.news.home.HomeActivity")
+            intent.setClassName(BuildConfig.APPLICATION_ID, "com.anangkur.beritaku.news.NewsActivity")
             startActivity(intent)
             finish()
         }, 3000)

@@ -4,8 +4,7 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.anangkur.beritaku.domain.GetArticles
-import com.anangkur.beritaku.presentation.features.news.DetailViewModel
-import com.anangkur.beritaku.presentation.features.news.HomeViewModel
+import com.anangkur.beritaku.presentation.features.news.NewsViewModel
 import com.anangkur.beritaku.presentation.mapper.ArticleMapper
 
 class ViewModelFactory(private val getArticles: GetArticles, private val articleMapper: ArticleMapper): ViewModelProvider.NewInstanceFactory() {
@@ -13,8 +12,7 @@ class ViewModelFactory(private val getArticles: GetArticles, private val article
     override fun <T : ViewModel?> create(modelClass: Class<T>): T  =
         with(modelClass) {
             when {
-                isAssignableFrom(HomeViewModel::class.java) -> HomeViewModel(getArticles, articleMapper)
-                isAssignableFrom(DetailViewModel::class.java) -> DetailViewModel()
+                isAssignableFrom(NewsViewModel::class.java) -> NewsViewModel(getArticles, articleMapper)
                 else -> throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
             }
         } as T

@@ -5,6 +5,7 @@ object Config {
     const val compileSdk = 28
     const val targetSdk = 28
     val javaVersion = JavaVersion.VERSION_1_8
+    val javaVersion_1_6 = JavaVersion.VERSION_1_6
     const val buildTools = "28.0.3"
 }
 

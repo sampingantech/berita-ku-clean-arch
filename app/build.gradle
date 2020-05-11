@@ -46,7 +46,5 @@ dependencies {
     implementation Deps.glide
     kapt Deps.glideCompiler
 
-    implementation Deps.androidxNavFragment
-    implementation Deps.androidxNavUi
     implementation Deps.androidxNavDynamicFeature
 }

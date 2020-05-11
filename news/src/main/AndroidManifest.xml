@@ -12,9 +12,7 @@
     </dist:module>
 
     <application>
-        <activity android:name=".home.HomeActivity"/>
-        <activity android:name=".detail.DetailActivity"/>
-        <activity android:name=".originalNews.OriginalNewsActivity"/>
+        <activity android:name=".NewsActivity"/>
     </application>
 </manifest>
 
