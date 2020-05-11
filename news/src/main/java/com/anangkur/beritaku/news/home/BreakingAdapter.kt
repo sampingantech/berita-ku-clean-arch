@@ -1,9 +1,9 @@
-package com.anangkur.beritaku.feature.home
+package com.anangkur.beritaku.news.home
 
 import android.view.View
 import com.anangkur.beritaku.model.ArticleIntent
 import com.anangkur.beritaku.base.BaseAdapter
-import com.anangkur.beritaku.R
+import com.anangkur.beritaku.news.R
 import com.anangkur.beritaku.setImageUrl
 import kotlinx.android.synthetic.main.item_breaking.view.*
 

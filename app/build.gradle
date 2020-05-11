@@ -20,11 +20,11 @@ android {
         }
     }
 
+    dynamicFeatures = [":news"]
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-
 
     implementation(project(':presentation'))
     implementation(project(':data'))
@@ -45,4 +45,8 @@ dependencies {
 
     implementation Deps.glide
     kapt Deps.glideCompiler
+
+    implementation Deps.androidxNavFragment
+    implementation Deps.androidxNavUi
+    implementation Deps.androidxNavDynamicFeature
 }

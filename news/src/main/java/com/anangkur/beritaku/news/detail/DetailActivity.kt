@@ -1,4 +1,4 @@
-package com.anangkur.beritaku.feature.detail
+package com.anangkur.beritaku.news.detail
 
 import android.content.Context
 import android.content.Intent
@@ -6,16 +6,17 @@ import android.os.Bundle
 import androidx.appcompat.widget.Toolbar
 import com.anangkur.beritaku.mapper.ArticleMapper
 import com.anangkur.beritaku.model.ArticleIntent
-import com.anangkur.beritaku.feature.originalNews.OriginalNewsActivity
+import com.anangkur.beritaku.news.originalNews.OriginalNewsActivity
 import com.anangkur.beritaku.base.BaseActivity
-import com.anangkur.beritaku.R
+import com.anangkur.beritaku.news.R
+import com.anangkur.beritaku.R as appR
 import com.anangkur.beritaku.obtainViewModel
 import com.anangkur.beritaku.presentation.features.news.DetailViewModel
 import com.anangkur.beritaku.setImageUrl
 import kotlinx.android.synthetic.main.activity_detail.*
-import kotlinx.android.synthetic.main.layout_toolbar.*
 
-class DetailActivity: BaseActivity<DetailViewModel>(), DetailActivityActionListener {
+class DetailActivity: BaseActivity<DetailViewModel>(),
+    DetailActivityActionListener {
 
     companion object{
         const val EXTRA_ARTICLE = "EXTRA_ARTICLE"
@@ -30,7 +31,7 @@ class DetailActivity: BaseActivity<DetailViewModel>(), DetailActivityActionListe
     override val mViewModel: DetailViewModel
         get() = obtainViewModel(DetailViewModel::class.java)
     override val mToolbar: Toolbar?
-        get() = toolbar
+        get() = findViewById(appR.id.toolbar)
     override val mTitleToolbar: String?
         get() = null
 

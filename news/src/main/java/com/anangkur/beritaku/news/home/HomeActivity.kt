@@ -1,12 +1,9 @@
-package com.anangkur.beritaku.feature.home
+package com.anangkur.beritaku.news.home
 
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.widget.LinearLayout
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
-import com.anangkur.beritaku.feature.detail.DetailActivity
 import com.anangkur.beritaku.mapper.ArticleMapper
 import com.anangkur.beritaku.model.ArticleIntent
 import com.anangkur.beritaku.*
@@ -14,24 +11,19 @@ import com.anangkur.beritaku.base.BaseActivity
 import com.anangkur.beritaku.core.BaseResult
 import com.anangkur.beritaku.presentation.features.news.HomeViewModel
 import kotlinx.android.synthetic.main.activity_home.*
-import kotlinx.android.synthetic.main.layout_toolbar.*
+import com.anangkur.beritaku.news.R
+import com.anangkur.beritaku.R as appR
 
 class HomeActivity: BaseActivity<HomeViewModel>(), HomeActionListener {
-
-    companion object{
-        fun startActivity(context: Context){
-            context.startActivity(Intent(context, HomeActivity::class.java))
-        }
-    }
 
     override val mLayout: Int
         get() = R.layout.activity_home
     override val mViewModel: HomeViewModel
         get() = obtainViewModel(HomeViewModel::class.java)
     override val mToolbar: Toolbar?
-        get() = toolbar
+        get() = findViewById(appR.id.toolbar)
     override val mTitleToolbar: String?
-        get() = getString(R.string.app_name)
+        get() = getString(appR.string.app_name)
 
     private lateinit var adapterBreaking: BreakingAdapter
     private lateinit var adapterBusiness: RegularAdapter
@@ -65,7 +57,7 @@ class HomeActivity: BaseActivity<HomeViewModel>(), HomeActionListener {
                         showSnackbarShort(it.message?:"")
                     }
                     BaseResult.Status.SUCCESS -> {
-                         separateMoviesBreaking(it.data?.map { item -> mViewModel.mapper.mapToView(item) })
+                         separateMoviesBreaking(mapToView(it.data!!))
                     }
                 }
             })
@@ -82,8 +74,11 @@ class HomeActivity: BaseActivity<HomeViewModel>(), HomeActionListener {
                         showSnackbarShort(it.message?:"")
                     }
                     BaseResult.Status.SUCCESS -> {
-                         val data = it.data!!.map { mapper.mapToView(it) }
-                         if (it.data != null) adapterBusiness.setRecyclerData(data.map { this@HomeActivity.mapper.mapToIntent(it) })
+                         it.data?.let {listArticle ->
+                             adapterBusiness.setRecyclerData(mapToView(listArticle).map { articleView ->
+                                 this@HomeActivity.mapper.mapToIntent(articleView)
+                             })
+                         }
                     }
                 }
             })
@@ -100,8 +95,11 @@ class HomeActivity: BaseActivity<HomeViewModel>(), HomeActionListener {
                         showSnackbarShort(it.message?:"")
                     }
                     BaseResult.Status.SUCCESS -> {
-                         val data = it.data!!.map { mapper.mapToView(it) }
-                         if (it.data != null) adapterTech.setRecyclerData(data.map { this@HomeActivity.mapper.mapToIntent(it) })
+                        it.data?.let {listArticle ->
+                            adapterTech.setRecyclerData(mapToView(listArticle).map { articleView ->
+                                this@HomeActivity.mapper.mapToIntent(articleView)
+                            })
+                        }
                     }
                 }
             })
@@ -118,8 +116,11 @@ class HomeActivity: BaseActivity<HomeViewModel>(), HomeActionListener {
                         showSnackbarShort(it.message?:"")
                     }
                     BaseResult.Status.SUCCESS -> {
-                         val data = it.data!!.map { mapper.mapToView(it) }
-                         if (it.data != null) adapterSport.setRecyclerData(data.map { this@HomeActivity.mapper.mapToIntent(it) })
+                        it.data?.let {listArticle ->
+                            adapterSport.setRecyclerData(mapToView(listArticle).map { articleView ->
+                                this@HomeActivity.mapper.mapToIntent(articleView)
+                            })
+                        }
                     }
                 }
             })
@@ -172,6 +173,6 @@ class HomeActivity: BaseActivity<HomeViewModel>(), HomeActionListener {
     }
 
     override fun onClickItem(data: ArticleIntent) {
-        DetailActivity.startActivity(this, data)
+        com.anangkur.beritaku.news.detail.DetailActivity.startActivity(this, data)
     }
 }

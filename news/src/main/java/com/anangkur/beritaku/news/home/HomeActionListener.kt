@@ -1,4 +1,4 @@
-package com.anangkur.beritaku.feature.home
+package com.anangkur.beritaku.news.home
 
 import com.anangkur.beritaku.model.ArticleIntent
 

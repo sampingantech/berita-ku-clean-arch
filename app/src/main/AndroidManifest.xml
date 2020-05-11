@@ -13,11 +13,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
 
-        <activity android:name=".feature.home.HomeActivity"/>
-        <activity android:name=".feature.detail.DetailActivity"/>
-        <activity android:name=".feature.originalNews.OriginalNewsActivity"/>
-
-        <activity android:name="com.anangkur.beritaku.feature.splash.SplashActivity">
+        <activity android:name="com.anangkur.beritaku.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -24,6 +24,9 @@ object Versions {
     const val constraintLayoutVersion = "1.1.3"
     const val recyclerViewVersion = "1.1.0"
     const val swipeRefreshVersion = "1.0.0"
+    const val cardViewVersion = "1.0.0"
+
+    const val navComponentVersion = "2.3.0-alpha06"
 
     const val roomVersion = "2.2.3"
     const val lifecycleVersion= "2.2.0"
@@ -38,8 +41,6 @@ object Versions {
     const val materialLoadingButtonVersion= "0.0.1"
 
     const val chuckVersion= "1.1.0"
-
-    const val daggerVersion = "2.25.3"
 }
 
 object Deps {
@@ -52,6 +53,12 @@ object Deps {
     const val androidxRecyclerView = "androidx.recyclerview:recyclerview:${Versions.recyclerViewVersion}"
     const val androidxAppCompat = "androidx.appcompat:appcompat:${Versions.appCompatVersion}"
     const val androidxSwipeRefresh = "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.swipeRefreshVersion}"
+    const val androidxCardView = "androidx.cardview:cardview:${Versions.cardViewVersion}"
+
+    // navigation component
+    const val androidxNavFragment = "androidx.navigation:navigation-fragment-ktx:${Versions.navComponentVersion}"
+    const val androidxNavUi = "androidx.navigation:navigation-ui-ktx:${Versions.navComponentVersion}"
+    const val androidxNavDynamicFeature = "androidx.navigation:navigation-dynamic-features-fragment:${Versions.navComponentVersion}"
 
     // lifecycle
     const val androidxLifeCycleExtension = "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycleVersion}"

@@ -1,4 +1,4 @@
-package com.anangkur.beritaku.feature.detail
+package com.anangkur.beritaku.news.detail
 
 interface DetailActivityActionListener {
     fun onClickSeeOriginal(url: String)

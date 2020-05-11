@@ -1,4 +1,4 @@
-package com.anangkur.beritaku.feature.originalNews
+package com.anangkur.beritaku.news.originalNews
 
 import android.content.Context
 import android.content.Intent
@@ -14,13 +14,13 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.ViewModel
-import com.anangkur.beritaku.R
+import com.anangkur.beritaku.news.R
+import com.anangkur.beritaku.R as appR
 import com.anangkur.beritaku.base.BaseActivity
 import com.anangkur.beritaku.base.BaseErrorView
 import com.anangkur.beritaku.gone
 import com.anangkur.beritaku.visible
 import kotlinx.android.synthetic.main.activity_original_news.*
-import kotlinx.android.synthetic.main.layout_toolbar_back.*
 
 class OriginalNewsActivity: BaseActivity<ViewModel?>() {
 
@@ -37,7 +37,7 @@ class OriginalNewsActivity: BaseActivity<ViewModel?>() {
     override val mViewModel: ViewModel?
         get() = null
     override val mToolbar: Toolbar?
-        get() = toolbar
+        get() = findViewById(appR.id.toolbar)
     override val mTitleToolbar: String?
         get() = null
 
@@ -99,7 +99,7 @@ class OriginalNewsActivity: BaseActivity<ViewModel?>() {
                 isSuccessLoadUrl = false
                 wv_original_news.gone()
                 ev_original_news.showError(
-                    errorMessage = getString(R.string.error_default),
+                    errorMessage = getString(appR.string.error_default),
                     errorType = BaseErrorView.ERROR_GENERAL
                 )
                 ev_original_news.setRetryClickListener {

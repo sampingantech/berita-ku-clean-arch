@@ -1,0 +1,19 @@
+apply plugin: 'com.android.dynamic-feature'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation(project(':core'))
+    implementation project(':app')
+    implementation(project(':presentation'))
+
+    implementation Deps.androidxLifeCycleExtension
+
+    implementation Deps.androidxAppCompat
+    implementation Deps.androidxRecyclerView
+    implementation Deps.androidxCardView
+    implementation Deps.androidxConstraintLayout
+}
