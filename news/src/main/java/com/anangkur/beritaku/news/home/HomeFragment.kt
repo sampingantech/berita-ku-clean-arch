@@ -1,10 +1,11 @@
 package com.anangkur.beritaku.news.home
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.appcompat.widget.Toolbar
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.anangkur.beritaku.*
@@ -14,14 +15,13 @@ import com.anangkur.beritaku.mapper.ArticleMapper
 import com.anangkur.beritaku.model.ArticleIntent
 import com.anangkur.beritaku.news.NewsActivity
 import com.anangkur.beritaku.news.R
-import com.anangkur.beritaku.R as appR
+import com.anangkur.beritaku.news.databinding.FragmentHomeBinding
 import com.anangkur.beritaku.presentation.features.news.NewsViewModel
-import kotlinx.android.synthetic.main.fragment_home.*
+import com.anangkur.beritaku.utils.*
+import com.anangkur.beritaku.R as appR
 
-class HomeFragment: BaseFragment<NewsViewModel>(), HomeActionListener {
+class HomeFragment: BaseFragment<FragmentHomeBinding, NewsViewModel>(), HomeActionListener {
 
-    override val mLayout: Int
-        get() = R.layout.fragment_home
     override val mViewModel: NewsViewModel
         get() = (requireActivity() as NewsActivity).mViewModel
     override val mToolbar: Toolbar?
@@ -50,9 +50,9 @@ class HomeFragment: BaseFragment<NewsViewModel>(), HomeActionListener {
                 when (it.status){
                     BaseResult.Status.LOADING -> {
                         if (it.isLoading!!){
-                            pb_breaking.visible()
+                            mLayout.pbBreaking.visible()
                         }else{
-                            pb_breaking.gone()
+                            mLayout.pbBreaking.gone()
                         }
                     }
                     BaseResult.Status.ERROR -> {
@@ -67,9 +67,9 @@ class HomeFragment: BaseFragment<NewsViewModel>(), HomeActionListener {
                 when (it.status){
                     BaseResult.Status.LOADING -> {
                         if (it.isLoading!!){
-                            pb_business.visible()
+                            mLayout.pbBusiness.visible()
                         }else{
-                            pb_business.gone()
+                            mLayout.pbBusiness.gone()
                         }
                     }
                     BaseResult.Status.ERROR -> {
@@ -88,9 +88,9 @@ class HomeFragment: BaseFragment<NewsViewModel>(), HomeActionListener {
                 when (it.status){
                     BaseResult.Status.LOADING -> {
                         if (it.isLoading!!){
-                            pb_tech.visible()
+                            mLayout.pbTech.visible()
                         }else{
-                            pb_tech.gone()
+                            mLayout.pbTech.gone()
                         }
                     }
                     BaseResult.Status.ERROR -> {
@@ -109,9 +109,9 @@ class HomeFragment: BaseFragment<NewsViewModel>(), HomeActionListener {
                 when (it.status){
                     BaseResult.Status.LOADING -> {
                         if (it.isLoading!!){
-                            pb_sport.visible()
+                            mLayout.pbSport.visible()
                         }else{
-                            pb_sport.gone()
+                            mLayout.pbSport.gone()
                         }
                     }
                     BaseResult.Status.ERROR -> {
@@ -137,7 +137,7 @@ class HomeFragment: BaseFragment<NewsViewModel>(), HomeActionListener {
 
     private fun setupAdapterBreaking(){
         adapterBreaking = BreakingAdapter(this)
-        recycler_breaking.apply {
+        mLayout.recyclerBreaking.apply {
             adapter = adapterBreaking
             setupRecyclerViewLinear(requireContext(), LinearLayout.VERTICAL)
         }
@@ -145,7 +145,7 @@ class HomeFragment: BaseFragment<NewsViewModel>(), HomeActionListener {
 
     private fun setupAdapterBusiness(){
         adapterBusiness = RegularAdapter(this)
-        recycler_business.apply {
+        mLayout.recyclerBusiness.apply {
             adapter = adapterBusiness
             setupRecyclerViewLinear(requireContext(), LinearLayout.HORIZONTAL)
         }
@@ -153,7 +153,7 @@ class HomeFragment: BaseFragment<NewsViewModel>(), HomeActionListener {
 
     private fun setupAdapterTech(){
         adapterTech = RegularAdapter(this)
-        recycler_tech.apply {
+        mLayout.recyclerTech.apply {
             adapter = adapterTech
             setupRecyclerViewLinear(requireContext(), LinearLayout.HORIZONTAL)
         }
@@ -161,17 +161,17 @@ class HomeFragment: BaseFragment<NewsViewModel>(), HomeActionListener {
 
     private fun setupAdapterSport(){
         adapterSport = RegularAdapter(this)
-        recycler_sport.apply {
+        mLayout.recyclerSport.apply {
             adapter = adapterSport
             setupRecyclerViewLinear(requireContext(), LinearLayout.HORIZONTAL)
         }
     }
 
     private fun setupFirstBreaking(data: ArticleIntent){
-        tv_title_breaking.text = data.title
-        tv_content_breaking.text = data.content
-        iv_breaking.setImageUrl(data.urlToImage?:"")
-        btn_read_more_breaking.setOnClickListener { this.onClickItem(data) }
+        mLayout.tvTitleBreaking.text = data.title
+        mLayout.tvContentBreaking.text = data.content
+        mLayout.ivBreaking.setImageUrl(data.urlToImage?:"")
+        mLayout.btnReadMoreBreaking.setOnClickListener { this.onClickItem(data) }
     }
 
     override fun onClickItem(data: ArticleIntent) {
@@ -183,5 +183,9 @@ class HomeFragment: BaseFragment<NewsViewModel>(), HomeActionListener {
         toolbar?.title = getString(appR.string.app_name)
         toolbar?.navigationIcon = null
         toolbar?.setNavigationOnClickListener(null)
+    }
+
+    override fun setupView(container: ViewGroup?): FragmentHomeBinding {
+        return FragmentHomeBinding.inflate(LayoutInflater.from(requireContext()), container, false)
     }
 }

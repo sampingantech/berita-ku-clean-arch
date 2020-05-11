@@ -12,6 +12,10 @@ android {
     kotlinOptions {
         jvmTarget = Config.javaVersion.toString()
     }
+
+    viewBinding {
+        enabled = true
+    }
 }
 
 dependencies {

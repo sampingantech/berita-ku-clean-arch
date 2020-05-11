@@ -1,4 +1,4 @@
-package com.anangkur.beritaku
+package com.anangkur.beritaku.utils
 
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager

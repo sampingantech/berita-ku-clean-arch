@@ -1,21 +1,20 @@
 package com.anangkur.beritaku.base
 
 import android.os.Bundle
-import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.ViewModel
+import androidx.viewbinding.ViewBinding
 
-abstract class BaseActivity<T: ViewModel?>: AppCompatActivity(){
+abstract class BaseActivity<V: ViewBinding, T: ViewModel?>: AppCompatActivity(){
 
-    @get:LayoutRes
-    abstract val mLayout: Int
+    abstract val mLayout: V
     abstract val mViewModel: T?
     abstract val mToolbar: Toolbar?
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(mLayout)
+        setContentView(mLayout.root)
 
         setupToolbar(mToolbar)
     }

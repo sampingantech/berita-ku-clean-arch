@@ -6,9 +6,10 @@ apply plugin: 'kotlin-kapt'
 android {
     defaultConfig {
         applicationId "com.anangkur.beritaku"
-        versionCode 2
-        versionName "1.0"
+        versionCode 100
+        versionName "1.0.0"
     }
+
     buildTypes {
         debug {
             applicationIdSuffix ".debug"
@@ -20,6 +21,10 @@ android {
         }
     }
 
+    viewBinding {
+        enabled = true
+    }
+    
     dynamicFeatures = [":news"]
 }
 

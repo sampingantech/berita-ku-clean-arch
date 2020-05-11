@@ -1,21 +1,22 @@
 package com.anangkur.beritaku.news.home
 
-import android.view.View
+import android.view.LayoutInflater
+import android.view.ViewGroup
 import com.anangkur.beritaku.model.ArticleIntent
 import com.anangkur.beritaku.base.BaseAdapter
-import com.anangkur.beritaku.news.R
-import com.anangkur.beritaku.setImageUrl
-import kotlinx.android.synthetic.main.item_breaking.view.*
+import com.anangkur.beritaku.news.databinding.ItemBreakingBinding
+import com.anangkur.beritaku.utils.setImageUrl
 
-class BreakingAdapter(private val listener: HomeActionListener): BaseAdapter<ArticleIntent>(){
+class BreakingAdapter(private val listener: HomeActionListener): BaseAdapter<ItemBreakingBinding, ArticleIntent>(){
 
-    override val layout: Int
-        get() = R.layout.item_breaking
+    override fun bindView(parent: ViewGroup): ItemBreakingBinding {
+        return ItemBreakingBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+    }
 
-    override fun bind(data: ArticleIntent, itemView: View, position: Int) {
-        itemView.iv_item_breaking.setImageUrl(data.urlToImage?:"")
-        itemView.tv_item_breaking.text = data.title
-        itemView.setOnClickListener { listener.onClickItem(data) }
+    override fun bind(data: ArticleIntent, itemView: ItemBreakingBinding, position: Int) {
+        itemView.ivItemBreaking.setImageUrl(data.urlToImage?:"")
+        itemView.tvItemBreaking.text = data.title
+        itemView.root.setOnClickListener { listener.onClickItem(data) }
     }
 
 }

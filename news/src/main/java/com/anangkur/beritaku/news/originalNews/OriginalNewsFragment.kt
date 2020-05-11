@@ -4,10 +4,7 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
-import android.view.View
+import android.view.*
 import android.webkit.WebResourceError
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
@@ -16,18 +13,16 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import com.anangkur.beritaku.base.BaseErrorView
 import com.anangkur.beritaku.base.BaseFragment
-import com.anangkur.beritaku.gone
+import com.anangkur.beritaku.utils.gone
 import com.anangkur.beritaku.news.NewsActivity
 import com.anangkur.beritaku.news.R
+import com.anangkur.beritaku.news.databinding.FragmentOriginalNewsBinding
 import com.anangkur.beritaku.presentation.features.news.NewsViewModel
 import com.anangkur.beritaku.R as appR
-import com.anangkur.beritaku.visible
-import kotlinx.android.synthetic.main.fragment_original_news.*
+import com.anangkur.beritaku.utils.visible
 
-class OriginalNewsFragment: BaseFragment<NewsViewModel>() {
+class OriginalNewsFragment: BaseFragment<FragmentOriginalNewsBinding, NewsViewModel>() {
 
-    override val mLayout: Int
-        get() = R.layout.fragment_original_news
     override val mViewModel: NewsViewModel
         get() = (requireActivity() as NewsActivity).mViewModel
     override val mToolbar: Toolbar?
@@ -68,22 +63,22 @@ class OriginalNewsFragment: BaseFragment<NewsViewModel>() {
     }
 
     private fun setupWebView(url: String){
-        wv_original_news.loadUrl(url)
-        wv_original_news.webViewClient = object: WebViewClient(){
+        mLayout.wvOriginalNews.loadUrl(url)
+        mLayout.wvOriginalNews.webViewClient = object: WebViewClient(){
             override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
                 super.onPageStarted(view, url, favicon)
                 isSuccessLoadUrl = true
-                wv_original_news.gone()
-                ev_original_news.showProgress()
-                ev_original_news.visible()
+                mLayout.wvOriginalNews.gone()
+                mLayout.evOriginalNews.showProgress()
+                mLayout.evOriginalNews.visible()
             }
 
             override fun onPageFinished(view: WebView?, url: String?) {
                 super.onPageFinished(view, url)
                 if (isSuccessLoadUrl){
-                    wv_original_news.visible()
-                    ev_original_news.gone()
-                    ev_original_news.endProgress()
+                    mLayout.wvOriginalNews.visible()
+                    mLayout.evOriginalNews.gone()
+                    mLayout.evOriginalNews.endProgress()
                 }
             }
 
@@ -93,15 +88,15 @@ class OriginalNewsFragment: BaseFragment<NewsViewModel>() {
                 error: WebResourceError?
             ) {
                 isSuccessLoadUrl = false
-                wv_original_news.gone()
-                ev_original_news.showError(
+                mLayout.wvOriginalNews.gone()
+                mLayout.evOriginalNews.showError(
                     errorMessage = getString(appR.string.error_default),
                     errorType = BaseErrorView.ERROR_GENERAL
                 )
-                ev_original_news.setRetryClickListener {
+                mLayout.evOriginalNews.setRetryClickListener {
                     view?.reload()
                 }
-                ev_original_news.visible()
+                mLayout.evOriginalNews.visible()
             }
         }
     }
@@ -110,5 +105,9 @@ class OriginalNewsFragment: BaseFragment<NewsViewModel>() {
         toolbar?.title = mViewModel.selectedNews?.title
         toolbar?.navigationIcon = ContextCompat.getDrawable(requireContext(), appR.drawable.ic_arrow_back_black_24dp)
         toolbar?.setNavigationOnClickListener { requireActivity().onBackPressed() }
+    }
+
+    override fun setupView(container: ViewGroup?): FragmentOriginalNewsBinding {
+        return FragmentOriginalNewsBinding.inflate(LayoutInflater.from(requireContext()), container, false)
     }
 }

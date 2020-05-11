@@ -8,11 +8,12 @@ import androidx.lifecycle.ViewModel
 import com.anangkur.beritaku.BuildConfig
 import com.anangkur.beritaku.R
 import com.anangkur.beritaku.base.BaseActivity
+import com.anangkur.beritaku.databinding.ActivitySplashBinding
 
-class SplashActivity: BaseActivity<Nothing>(){
+class SplashActivity: BaseActivity<ActivitySplashBinding, Nothing>(){
 
-    override val mLayout: Int
-        get() = R.layout.activity_splash
+    override val mLayout: ActivitySplashBinding
+        get() = ActivitySplashBinding.inflate(layoutInflater)
     override val mViewModel: Nothing?
         get() = null
     override val mToolbar: Toolbar?

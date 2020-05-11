@@ -1,4 +1,4 @@
-package com.anangkur.beritaku
+package com.anangkur.beritaku.utils
 
 import android.app.Activity
 import android.content.ClipData
@@ -21,6 +21,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.anangkur.beritaku.R
 import com.anangkur.beritaku.injection.ViewModelFactory
 import com.anangkur.beritaku.base.BaseSpinnerListener
 import com.anangkur.beritaku.base.DialogImagePickerActionListener
