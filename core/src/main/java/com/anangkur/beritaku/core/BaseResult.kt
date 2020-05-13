@@ -1,17 +1,16 @@
 package com.anangkur.beritaku.core
 
-data class BaseResult<out T>(val status: Status, val data: T?, val message: String?, val isLoading: Boolean?) {
-
-    enum class Status {
-        SUCCESS,
-        ERROR,
-        LOADING
-    }
+data class BaseResult<out T>(val status: Int, val data: T?, val message: String?, val isLoading: Boolean?) {
 
     companion object {
+
+        const val STATE_SUCCESS = 1
+        const val STATE_ERROR = -1
+        const val STATE_LOADING = 0
+
         fun <T> success(data: T): BaseResult<T> {
             return BaseResult(
-                Status.SUCCESS,
+                STATE_SUCCESS,
                 data,
                 null,
                 null
@@ -20,7 +19,7 @@ data class BaseResult<out T>(val status: Status, val data: T?, val message: Stri
 
         fun <T> error(message: String): BaseResult<T> {
             return BaseResult(
-                Status.ERROR,
+                STATE_ERROR,
                 null,
                 message,
                 null
@@ -29,7 +28,7 @@ data class BaseResult<out T>(val status: Status, val data: T?, val message: Stri
 
         fun <T> loading(isLoading: Boolean): BaseResult<T> {
             return BaseResult(
-                Status.LOADING,
+                STATE_LOADING,
                 null,
                 null,
                 isLoading

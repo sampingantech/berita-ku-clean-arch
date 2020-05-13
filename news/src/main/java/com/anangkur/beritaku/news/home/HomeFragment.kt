@@ -48,34 +48,34 @@ class HomeFragment: BaseFragment<FragmentHomeBinding, NewsViewModel>(), HomeActi
         mViewModel.apply {
             topHeadlineNewsLive.observe(viewLifecycleOwner, Observer {
                 when (it.status){
-                    BaseResult.Status.LOADING -> {
+                    BaseResult.STATE_LOADING -> {
                         if (it.isLoading!!){
                             mLayout.pbBreaking.visible()
                         }else{
                             mLayout.pbBreaking.gone()
                         }
                     }
-                    BaseResult.Status.ERROR -> {
+                    BaseResult.STATE_ERROR -> {
                         requireActivity().showSnackbarShort(it.message?:"")
                     }
-                    BaseResult.Status.SUCCESS -> {
+                    BaseResult.STATE_SUCCESS -> {
                         separateMoviesBreaking(mapToView(it.data!!))
                     }
                 }
             })
             businessNewsLive.observe(viewLifecycleOwner, Observer {
                 when (it.status){
-                    BaseResult.Status.LOADING -> {
+                    BaseResult.STATE_LOADING -> {
                         if (it.isLoading!!){
                             mLayout.pbBusiness.visible()
                         }else{
                             mLayout.pbBusiness.gone()
                         }
                     }
-                    BaseResult.Status.ERROR -> {
+                    BaseResult.STATE_ERROR -> {
                         requireActivity().showSnackbarShort(it.message?:"")
                     }
-                    BaseResult.Status.SUCCESS -> {
+                    BaseResult.STATE_SUCCESS -> {
                         it.data?.let {listArticle ->
                             adapterBusiness.setRecyclerData(mapToView(listArticle).map { articleView ->
                                 mapper.mapToIntent(articleView)
@@ -86,17 +86,17 @@ class HomeFragment: BaseFragment<FragmentHomeBinding, NewsViewModel>(), HomeActi
             })
             techNewsLive.observe(viewLifecycleOwner, Observer {
                 when (it.status){
-                    BaseResult.Status.LOADING -> {
+                    BaseResult.STATE_LOADING -> {
                         if (it.isLoading!!){
                             mLayout.pbTech.visible()
                         }else{
                             mLayout.pbTech.gone()
                         }
                     }
-                    BaseResult.Status.ERROR -> {
+                    BaseResult.STATE_ERROR -> {
                         requireActivity().showSnackbarShort(it.message?:"")
                     }
-                    BaseResult.Status.SUCCESS -> {
+                    BaseResult.STATE_SUCCESS -> {
                         it.data?.let {listArticle ->
                             adapterTech.setRecyclerData(mapToView(listArticle).map { articleView ->
                                 mapper.mapToIntent(articleView)
@@ -107,17 +107,17 @@ class HomeFragment: BaseFragment<FragmentHomeBinding, NewsViewModel>(), HomeActi
             })
             sportNewsLive.observe(viewLifecycleOwner, Observer {
                 when (it.status){
-                    BaseResult.Status.LOADING -> {
+                    BaseResult.STATE_LOADING -> {
                         if (it.isLoading!!){
                             mLayout.pbSport.visible()
                         }else{
                             mLayout.pbSport.gone()
                         }
                     }
-                    BaseResult.Status.ERROR -> {
+                    BaseResult.STATE_ERROR -> {
                         requireActivity().showSnackbarShort(it.message?:"")
                     }
-                    BaseResult.Status.SUCCESS -> {
+                    BaseResult.STATE_SUCCESS -> {
                         it.data?.let {listArticle ->
                             adapterSport.setRecyclerData(mapToView(listArticle).map { articleView ->
                                 mapper.mapToIntent(articleView)
