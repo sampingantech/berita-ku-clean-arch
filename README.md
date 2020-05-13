@@ -70,7 +70,7 @@ You can see the project depedency graph below.
 
 <br/>
 
-<img src="app/src/main/res/drawable/project.dot.png" alt="Splash Screen">
+<img src="app/src/main/res/drawable/project_dot.png" alt="Splash Screen">
 
 ## Built With
 * [Kotlin](https://kotlinlang.org/)
