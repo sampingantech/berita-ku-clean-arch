@@ -30,8 +30,6 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-
     implementation(project(':presentation'))
     implementation(project(':data'))
     implementation(project(':local'))
