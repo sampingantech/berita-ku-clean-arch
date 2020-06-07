@@ -7,55 +7,48 @@ apply from: 'https://raw.githubusercontent.com/JakeWharton/SdkSearch/master/grad
 android {
     defaultConfig {
         applicationId "com.anangkur.beritaku"
-        versionCode 2
-        versionName "1.0"
+        versionCode 100
+        versionName "1.0.0"
     }
+
     buildTypes {
         debug {
             applicationIdSuffix ".debug"
             debuggable true
-            buildConfigField "String", "baseUrl", '"https://newsapi.org/v2/"'
-            buildConfigField "String", "baseImageUrl", '""'
         }
         release {
-            buildConfigField "String", "baseUrl", '"https://newsapi.org/v2/"'
-            buildConfigField "String", "baseImageUrl", '""'
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    viewBinding {
+        enabled = true
+    }
+    
+    dynamicFeatures = [":news"]
 }
 
 dependencies {
-    implementation Deps.androidxConstraintLayout
-
-    implementation Deps.androidxLifeCycleExtension
-    implementation Deps.androidxLivedata
+    implementation(project(':presentation'))
+    implementation(project(':data'))
+    implementation(project(':local'))
+    implementation(project(':remote'))
+    implementation(project(':domain'))
+    implementation(project(':core'))
 
     implementation Deps.androidxRoom
     kapt Deps.androidxRoomCompiler
 
-    // Dependencies for Glide
-    implementation Deps.glide
-    annotationProcessor Deps.glideCompiler
+    implementation Deps.androidxLifeCycleExtension
 
-    // retrofit
-    implementation Deps.retrofitConverterGson
-    implementation Deps.retrofit
-    implementation Deps.okhttp
-    implementation Deps.okhttpLoggingInterceptor
+    implementation Deps.androidxConstraintLayout
 
-    // others
     implementation Deps.materialLoadingButton
     implementation Deps.multilineCollapsingToolbar
 
-    // chuck
-    debugImplementation Deps.chuck
-    releaseImplementation Deps.chuckNoOp
+    implementation Deps.glide
+    kapt Deps.glideCompiler
 
-    testImplementation Deps.testLibJunit
-
-    androidTestImplementation Deps.testAndroidxRunner
-    androidTestImplementation Deps.testAndroidxRules
-    androidTestImplementation Deps.testAndroidxEspressoCore
+    implementation Deps.androidxNavDynamicFeature
 }

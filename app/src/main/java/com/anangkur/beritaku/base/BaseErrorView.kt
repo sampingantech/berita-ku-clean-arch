@@ -9,8 +9,8 @@ import android.widget.ProgressBar
 import android.widget.RelativeLayout
 import android.widget.TextView
 import com.anangkur.beritaku.R
-import com.anangkur.beritaku.util.gone
-import com.anangkur.beritaku.util.visible
+import com.anangkur.beritaku.utils.gone
+import com.anangkur.beritaku.utils.visible
 import com.anangkur.materialloadingbutton.MaterialLoadingButton
 
 class BaseErrorView(context: Context, attrs: AttributeSet): RelativeLayout(context, attrs){
